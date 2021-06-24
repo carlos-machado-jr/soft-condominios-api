@@ -1,9 +1,10 @@
 package com.softcondominios.api.rest.resource;
 
 import java.net.URI;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,7 +21,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
 @RestController
-@RequestMapping("/appi/usuarios")
+@RequestMapping("/usuarios")
 @Api("API Rest usuario")
 @CrossOrigin(origins = "*")
 public class UserResource {
@@ -30,10 +31,11 @@ public class UserResource {
 	
 	@ApiOperation("Retorna uma lista de usuarios")
 	@GetMapping
-	public ResponseEntity<List<UserDomain>> findAll(){
-		List<UserDomain> user = userService.findAll();
+	public ResponseEntity<Page<UserDomain>> findAll(Pageable page){
 		
-		return ResponseEntity.ok(user);
+		Page<UserDomain> user = userService.findAll(page);
+		return ResponseEntity.ok(user); 
+	
 	}
 	
 	@ApiOperation("Cria um usuario")
