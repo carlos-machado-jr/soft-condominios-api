@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class UserDomain implements Serializable{
@@ -21,58 +23,51 @@ public class UserDomain implements Serializable{
 	private Long userId;
 	
 	@Column
-	private String userNome;
+	private String userLogin;
 	
 	@Column
 	private String userPassword;
 	
+	@ManyToOne
+	@JoinColumn(name = "id_grupo")
+	private GrupoPermissaoDomain userGroup;
 	
 	public UserDomain() {
 		// TODO Auto-generated constructor stub
 	}
-
-
+	public UserDomain(Long userId, String userLogin, String userPassword) {
+		super();
+		this.userId = userId;
+		this.userLogin = userLogin;
+		this.userPassword = userPassword;
+	}
 	public Long getUserId() {
 		return userId;
 	}
-
-
 	public void setUserId(Long userId) {
 		this.userId = userId;
 	}
-
-
-	public String getUserNome() {
-		return userNome;
+	public String getUserLogin() {
+		return userLogin;
 	}
-
-
-	public void setUserNome(String userNome) {
-		this.userNome = userNome;
+	public void setUserLogin(String userLogin) {
+		this.userLogin = userLogin;
 	}
-
-
 	public String getUserPassword() {
 		return userPassword;
 	}
-
-
 	public void setUserPassword(String userPassword) {
 		this.userPassword = userPassword;
 	}
-
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((userId == null) ? 0 : userId.hashCode());
-		result = prime * result + ((userNome == null) ? 0 : userNome.hashCode());
+		result = prime * result + ((userLogin == null) ? 0 : userLogin.hashCode());
 		result = prime * result + ((userPassword == null) ? 0 : userPassword.hashCode());
 		return result;
 	}
-
-
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -87,10 +82,10 @@ public class UserDomain implements Serializable{
 				return false;
 		} else if (!userId.equals(other.userId))
 			return false;
-		if (userNome == null) {
-			if (other.userNome != null)
+		if (userLogin == null) {
+			if (other.userLogin != null)
 				return false;
-		} else if (!userNome.equals(other.userNome))
+		} else if (!userLogin.equals(other.userLogin))
 			return false;
 		if (userPassword == null) {
 			if (other.userPassword != null)
@@ -99,6 +94,8 @@ public class UserDomain implements Serializable{
 			return false;
 		return true;
 	}
+	
+	
 	
 	
 }
