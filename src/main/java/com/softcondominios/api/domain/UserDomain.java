@@ -35,39 +35,62 @@ public class UserDomain implements Serializable{
 	public UserDomain() {
 		// TODO Auto-generated constructor stub
 	}
-	public UserDomain(Long userId, String userLogin, String userPassword) {
+	
+	
+	public UserDomain(Long userId, String userLogin, String userPassword, GrupoPermissaoDomain userGroup) {
 		super();
 		this.userId = userId;
 		this.userLogin = userLogin;
 		this.userPassword = userPassword;
+		this.userGroup = userGroup;
 	}
+
+	
 	public Long getUserId() {
 		return userId;
 	}
+
 	public void setUserId(Long userId) {
 		this.userId = userId;
 	}
+
 	public String getUserLogin() {
 		return userLogin;
 	}
+
 	public void setUserLogin(String userLogin) {
 		this.userLogin = userLogin;
 	}
+
 	public String getUserPassword() {
 		return userPassword;
 	}
+
 	public void setUserPassword(String userPassword) {
 		this.userPassword = userPassword;
 	}
+
+	public GrupoPermissaoDomain getUserGroup() {
+		return userGroup;
+	}
+
+	public void setUserGroup(GrupoPermissaoDomain userGroup) {
+		this.userGroup = userGroup;
+	}
+
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((userGroup == null) ? 0 : userGroup.hashCode());
 		result = prime * result + ((userId == null) ? 0 : userId.hashCode());
 		result = prime * result + ((userLogin == null) ? 0 : userLogin.hashCode());
 		result = prime * result + ((userPassword == null) ? 0 : userPassword.hashCode());
 		return result;
 	}
+
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -77,6 +100,11 @@ public class UserDomain implements Serializable{
 		if (getClass() != obj.getClass())
 			return false;
 		UserDomain other = (UserDomain) obj;
+		if (userGroup == null) {
+			if (other.userGroup != null)
+				return false;
+		} else if (!userGroup.equals(other.userGroup))
+			return false;
 		if (userId == null) {
 			if (other.userId != null)
 				return false;
@@ -94,7 +122,6 @@ public class UserDomain implements Serializable{
 			return false;
 		return true;
 	}
-	
 	
 	
 	

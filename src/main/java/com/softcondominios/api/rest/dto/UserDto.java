@@ -1,20 +1,22 @@
 package com.softcondominios.api.rest.dto;
 
+import com.softcondominios.api.domain.UserDomain;
+
 public class UserDto {
 	
 	private Long id;
-	private String nome;
-	private String senha;
+	private String email;
+	private String grupoPermissao;
 	
 	public UserDto() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public UserDto(Long id, String nome, String senha) {
+	public UserDto(UserDomain user) {
 		super();
-		this.id = id;
-		this.nome = nome;
-		this.senha = senha;
+		this.id = user.getUserId();
+		this.email = user.getUserLogin();
+		this.grupoPermissao = user.getUserGroup().getDescricao();
 	}
 
 	public Long getId() {
@@ -25,21 +27,23 @@ public class UserDto {
 		this.id = id;
 	}
 
-	public String getNome() {
-		return nome;
+	public String getEmail() {
+		return email;
 	}
 
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setEmail(String nome) {
+		this.email = nome;
 	}
 
-	public String getSenha() {
-		return senha;
+
+	public String getGrupoPermissao() {
+		return grupoPermissao;
 	}
 
-	public void setSenha(String senha) {
-		this.senha = senha;
+	public void setGrupoPermissao(String grupoPermissao) {
+		this.grupoPermissao = grupoPermissao;
 	}
+	
 	
 	
 	

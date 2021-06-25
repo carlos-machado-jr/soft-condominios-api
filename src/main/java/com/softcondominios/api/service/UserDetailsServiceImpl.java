@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.softcondominios.api.domain.UserDomain;
 import com.softcondominios.api.repository.UserRepository;
+import com.softcondominios.api.security.UserSS;
 
 
 
@@ -18,11 +19,11 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 	private UserRepository repo;
 	
 	@Override
-	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-		UserDomain userDomain = repo.findByEmail(email);
+	public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
+		UserDomain userDomain = repo.findByUserLogin(login).orElseThrow( () -> new UsernameNotFoundException("Usuario não encontrado"));
 		if (userDomain == null) {
-			throw new UsernameNotFoundException(email);
+			throw new UsernameNotFoundException(login);
 		}
-		return new UserSS(cli.getId(), cli.getEmail(), cli.getSenha(), cli.getPerfis());
+		return new UserSS(userDomain.getUserId(),userDomain.getUserLogin(), userDomain.getUserPassword());
 	}
 }
