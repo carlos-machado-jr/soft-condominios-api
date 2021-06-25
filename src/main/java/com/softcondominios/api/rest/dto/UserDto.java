@@ -5,8 +5,10 @@ import com.softcondominios.api.domain.UserDomain;
 public class UserDto {
 	
 	private Long id;
-	private String email;
+	private String login;
 	private String grupoPermissao;
+	private String status;
+	private String linkFoto;
 	
 	public UserDto() {
 		// TODO Auto-generated constructor stub
@@ -14,9 +16,11 @@ public class UserDto {
 
 	public UserDto(UserDomain user) {
 		super();
-		this.id = user.getUserId();
-		this.email = user.getUserLogin();
-		this.grupoPermissao = user.getUserGroup().getDescricao();
+		this.id = user.getId();
+		this.login = user.getLogin();
+		this.grupoPermissao = user.getGrupoPermissao().getDescricao();
+		this.status = user.isStatus() ? "Ativado" : "Desativado";
+		this.linkFoto = user.getLinkFoto(); 
 	}
 
 	public Long getId() {
@@ -27,14 +31,13 @@ public class UserDto {
 		this.id = id;
 	}
 
-	public String getEmail() {
-		return email;
+	public String getLogin() {
+		return login;
 	}
 
-	public void setEmail(String nome) {
-		this.email = nome;
+	public void setLogin(String login) {
+		this.login = login;
 	}
-
 
 	public String getGrupoPermissao() {
 		return grupoPermissao;
@@ -43,6 +46,23 @@ public class UserDto {
 	public void setGrupoPermissao(String grupoPermissao) {
 		this.grupoPermissao = grupoPermissao;
 	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public String getLinkFoto() {
+		return linkFoto;
+	}
+
+	public void setLinkFoto(String linkFoto) {
+		this.linkFoto = linkFoto;
+	}
+
 	
 	
 	

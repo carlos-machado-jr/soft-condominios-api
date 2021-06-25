@@ -20,10 +20,10 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 	
 	@Override
 	public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
-		UserDomain userDomain = repo.findByUserLogin(login).orElseThrow( () -> new UsernameNotFoundException("Usuario não encontrado"));
+		UserDomain userDomain = repo.findByLogin(login).orElseThrow( () -> new UsernameNotFoundException("Usuario não encontrado"));
 		if (userDomain == null) {
 			throw new UsernameNotFoundException(login);
 		}
-		return new UserSS(userDomain.getUserId(),userDomain.getUserLogin(), userDomain.getUserPassword());
+		return new UserSS(userDomain.getId(),userDomain.getLogin(), userDomain.getPassword());
 	}
 }

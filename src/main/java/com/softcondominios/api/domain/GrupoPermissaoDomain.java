@@ -10,6 +10,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class GrupoPermissaoDomain implements Serializable{
 
@@ -25,8 +27,8 @@ public class GrupoPermissaoDomain implements Serializable{
 	@Column
 	private String descricao;
 	
-	
-	@OneToMany(mappedBy = "userGroup")
+	@JsonIgnore
+	@OneToMany(mappedBy = "grupoPermissao")
 	private List<UserDomain> userDomain;
 	
 	public GrupoPermissaoDomain() {

@@ -12,7 +12,7 @@ import com.softcondominios.api.domain.UserDomain;
 @Repository
 public interface UserRepository extends PagingAndSortingRepository<UserDomain, Long>{
 
-	Optional<UserDomain> findByUserLogin(String login);
+	Optional<UserDomain> findByLogin(String login);
 
 	
 

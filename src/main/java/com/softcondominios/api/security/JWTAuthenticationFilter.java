@@ -17,7 +17,7 @@ import org.springframework.security.web.authentication.AuthenticationFailureHand
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.softcondominios.api.rest.dto.CredenciaisDTO;
+import com.softcondominios.api.rest.dto.CredenciaisDto;
 
 
 public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
@@ -40,8 +40,8 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
                                                 HttpServletResponse res) throws AuthenticationException {
 
 		try {
-			CredenciaisDTO creds = new ObjectMapper()
-	                .readValue(req.getInputStream(), CredenciaisDTO.class);
+			CredenciaisDto creds = new ObjectMapper()
+	                .readValue(req.getInputStream(), CredenciaisDto.class);
 	
 	        UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(creds.getEmail(), creds.getSenha(), new ArrayList<>());
 	        
