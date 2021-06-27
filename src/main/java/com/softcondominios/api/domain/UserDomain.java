@@ -9,10 +9,15 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.softcondominios.api.rest.dto.NewColaboradorDto;
 import com.softcondominios.api.rest.dto.NewUserDto;
 
 @Entity
+@Table(name = "tb_user")
 public class UserDomain implements Serializable{
 
 	/**
@@ -24,21 +29,30 @@ public class UserDomain implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@Column(unique = true)
+	@Column(columnDefinition = "varchar(100)", nullable = false, unique = true)
 	private String login;
 	
-	@Column
+	@Column(nullable = false)
 	private String password;
+	
+	
+	private String linkFoto;
+	
+	@Column(columnDefinition = "tinyint")
+	private boolean status;
+	
+//	chaves estrangeiras --------||||||><><><__-_
+//	chaves estrangeiras --------||||||><><><__-_
+//	chaves estrangeiras --------||||||><><><__-_
+//	chaves estrangeiras --------||||||><><><__-_
 	
 	@ManyToOne
 	@JoinColumn(name = "id_grupo")
 	private GrupoPermissaoDomain grupoPermissao;
 	
-	@Column
-	private boolean status;
-	
-	@Column
-	private String linkFoto;
+	@JsonIgnore
+	@OneToOne(mappedBy = "usuario")
+	private ColaboradorDomain colaborador;
 	
 	public UserDomain() {
 		// TODO Auto-generated constructor stub
@@ -50,6 +64,14 @@ public class UserDomain implements Serializable{
 		this.password = newUser.getSenha();
 		this.status = true;
 		this.linkFoto = newUser.getLinkFoto();
+	}
+	
+	public UserDomain(NewColaboradorDto newColaboradorDto) {
+		this.id = null;
+		this.login = newColaboradorDto.getEmail();
+		this.password = newColaboradorDto.getSenha();
+		this.status = true;
+		this.linkFoto = newColaboradorDto.getLinkFoto();
 	}
 
 	public Long getId() {
