@@ -12,7 +12,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -52,6 +51,8 @@ public class ColaboradorDomain implements Serializable {
 	@NotNull
 	private boolean status;
 	
+	private String funcao;
+	
 //	chaves estrangeiras --------||||||><><><__-_
 //	chaves estrangeiras --------||||||><><><__-_
 //	chaves estrangeiras --------||||||><><><__-_
@@ -62,12 +63,11 @@ public class ColaboradorDomain implements Serializable {
 	private UserDomain usuario;
 	
 	@ManyToMany
-	@JoinTable(name="rel_colaborador_condominio", joinColumns = {@JoinColumn(name="col_id")}, inverseJoinColumns = {@JoinColumn(name="con_id")})
+	@JoinTable(name="colaborador_has_condominio", joinColumns = {@JoinColumn(name="col_id")}, inverseJoinColumns = {@JoinColumn(name="con_id")})
 	private Set<CondominioDomain> condominio = new HashSet<>();
+
 	
-	@ManyToOne
-	@JoinColumn(name = "col_idFuncao", referencedColumnName = "id")
-	private FuncaoDomain funcaoDomain;
+	
 	
 	
 //	construtores ------------//////////-
@@ -89,13 +89,14 @@ public class ColaboradorDomain implements Serializable {
 		this.sobrenome = newColaborador.getSobrenome();
 		this.email = newColaborador.getEmail();
 		this.cpf = newColaborador.getCpf();
+		this.funcao = newColaborador.getFuncao();
 		this.status = true;
 		
 	}
 
 	public ColaboradorDomain(Long id, @NotNull String nome, @NotNull String sobrenome, @NotNull String email,
 			@NotNull String cpf, @NotNull boolean status, UserDomain usuario, Set<CondominioDomain> condominio,
-			FuncaoDomain funcao) {
+			String funcao) {
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -105,7 +106,7 @@ public class ColaboradorDomain implements Serializable {
 		this.status = status;
 		this.usuario = usuario;
 		this.condominio = condominio;
-		this.funcaoDomain = funcao;
+		this.funcao = funcao;
 	}
 
 	//getters e setters -----------------------------------------------
@@ -200,13 +201,13 @@ public class ColaboradorDomain implements Serializable {
 	}
 
 
-	public FuncaoDomain getFuncao() {
-		return funcaoDomain;
+	public String getFuncao() {
+		return funcao;
 	}
 
 
-	public void setFuncao(FuncaoDomain funcao) {
-		this.funcaoDomain = funcao;
+	public void setFuncao(String funcao) {
+		this.funcao = funcao;
 	}
 
 	// hashcode ----------------==============

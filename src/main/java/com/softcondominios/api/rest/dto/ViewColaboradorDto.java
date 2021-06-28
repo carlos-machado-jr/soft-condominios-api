@@ -33,7 +33,7 @@ public class ViewColaboradorDto implements Serializable {
 		this.email = colaborador.getEmail();
 		this.cpf = colaborador.getCpf();
 		this.status = colaborador.isStatus() ? "ativado" : "desativado";
-		this.funcao = colaborador.getFuncao().getDescricao();
+		this.funcao = colaborador.getFuncao();
 		this.condominio = convertDto(colaborador.getCondominio());
 	}
 

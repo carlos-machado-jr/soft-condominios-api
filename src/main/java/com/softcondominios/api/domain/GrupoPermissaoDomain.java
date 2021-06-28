@@ -8,7 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -30,7 +30,7 @@ public class GrupoPermissaoDomain implements Serializable{
 	private String descricao;
 	
 	@JsonIgnore
-	@OneToMany(mappedBy = "grupoPermissao")
+	@ManyToMany(mappedBy = "grupoPermissao")
 	private List<UserDomain> userDomain;
 	
 	public GrupoPermissaoDomain() {
@@ -78,42 +78,6 @@ public class GrupoPermissaoDomain implements Serializable{
 		this.userDomain = userDomain;
 	}
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((Id == null) ? 0 : Id.hashCode());
-		result = prime * result + ((descricao == null) ? 0 : descricao.hashCode());
-		result = prime * result + ((userDomain == null) ? 0 : userDomain.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		GrupoPermissaoDomain other = (GrupoPermissaoDomain) obj;
-		if (Id == null) {
-			if (other.Id != null)
-				return false;
-		} else if (!Id.equals(other.Id))
-			return false;
-		if (descricao == null) {
-			if (other.descricao != null)
-				return false;
-		} else if (!descricao.equals(other.descricao))
-			return false;
-		if (userDomain == null) {
-			if (other.userDomain != null)
-				return false;
-		} else if (!userDomain.equals(other.userDomain))
-			return false;
-		return true;
-	}
 	
 	
 	

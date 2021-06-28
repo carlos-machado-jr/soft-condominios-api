@@ -1,6 +1,8 @@
 package com.softcondominios.api.domain;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,7 +10,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -46,9 +49,9 @@ public class UserDomain implements Serializable{
 //	chaves estrangeiras --------||||||><><><__-_
 //	chaves estrangeiras --------||||||><><><__-_
 	
-	@ManyToOne
-	@JoinColumn(name = "id_grupo")
-	private GrupoPermissaoDomain grupoPermissao;
+	@ManyToMany
+	@JoinTable(name="user_has_grupo_permissao", joinColumns = {@JoinColumn(name="usr_id")}, inverseJoinColumns = {@JoinColumn(name="grp_id")})
+	private Set<GrupoPermissaoDomain> grupoPermissao = new HashSet<>();
 	
 	@JsonIgnore
 	@OneToOne(mappedBy = "usuario")
@@ -98,12 +101,22 @@ public class UserDomain implements Serializable{
 		this.password = password;
 	}
 
-	public GrupoPermissaoDomain getGrupoPermissao() {
+	
+
+	public Set<GrupoPermissaoDomain> getGrupoPermissao() {
 		return grupoPermissao;
 	}
 
-	public void setGrupoPermissao(GrupoPermissaoDomain grupoPermissao) {
+	public void setGrupoPermissao(Set<GrupoPermissaoDomain> grupoPermissao) {
 		this.grupoPermissao = grupoPermissao;
+	}
+
+	public ColaboradorDomain getColaborador() {
+		return colaborador;
+	}
+
+	public void setColaborador(ColaboradorDomain colaborador) {
+		this.colaborador = colaborador;
 	}
 
 	public boolean isStatus() {
@@ -122,57 +135,7 @@ public class UserDomain implements Serializable{
 		this.linkFoto = linkFoto;
 	}
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((grupoPermissao == null) ? 0 : grupoPermissao.hashCode());
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((linkFoto == null) ? 0 : linkFoto.hashCode());
-		result = prime * result + ((login == null) ? 0 : login.hashCode());
-		result = prime * result + ((password == null) ? 0 : password.hashCode());
-		result = prime * result + (status ? 1231 : 1237);
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		UserDomain other = (UserDomain) obj;
-		if (grupoPermissao == null) {
-			if (other.grupoPermissao != null)
-				return false;
-		} else if (!grupoPermissao.equals(other.grupoPermissao))
-			return false;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		if (linkFoto == null) {
-			if (other.linkFoto != null)
-				return false;
-		} else if (!linkFoto.equals(other.linkFoto))
-			return false;
-		if (login == null) {
-			if (other.login != null)
-				return false;
-		} else if (!login.equals(other.login))
-			return false;
-		if (password == null) {
-			if (other.password != null)
-				return false;
-		} else if (!password.equals(other.password))
-			return false;
-		if (status != other.status)
-			return false;
-		return true;
-	}
+	
 	
 	
 	

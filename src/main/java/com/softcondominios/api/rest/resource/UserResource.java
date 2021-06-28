@@ -1,7 +1,9 @@
 package com.softcondominios.api.rest.resource;
 
 import java.net.URI;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -81,9 +83,14 @@ public class UserResource {
 	}
 	
 	
+	private Set<GrupoPermissaoDomain> convertByHashSet(GrupoPermissaoDomain grupoPermissaoDomain){
+		Set<GrupoPermissaoDomain> permissao = new HashSet<GrupoPermissaoDomain>();
+		permissao.add(grupoPermissaoDomain);
+		return permissao;
+	}
 	
-	private GrupoPermissaoDomain findGruposByDescricao(String descricao) {
-		return grupoPermissaoService.findByDescricao(descricao);
+	private Set<GrupoPermissaoDomain> findGruposByDescricao(String descricao) {
+		return convertByHashSet(grupoPermissaoService.findByDescricao(descricao));
 	}
 	private Page<UserDto> convertDto(List<UserDomain> user) {
 		return new PageImpl<>(user.stream().map(u -> new UserDto(u)).collect(Collectors.toList())); 

@@ -1,12 +1,15 @@
 package com.softcondominios.api.rest.dto;
 
+import java.util.Set;
+
+import com.softcondominios.api.domain.GrupoPermissaoDomain;
 import com.softcondominios.api.domain.UserDomain;
 
 public class UserDto {
 	
 	private Long id;
 	private String login;
-	private String grupoPermissao;
+	private Set<GrupoPermissaoDomain> grupoPermissao;
 	private String status;
 	private String linkFoto;
 	
@@ -18,11 +21,12 @@ public class UserDto {
 		super();
 		this.id = user.getId();
 		this.login = user.getLogin();
-		this.grupoPermissao = user.getGrupoPermissao().getDescricao();
+		this.grupoPermissao = user.getGrupoPermissao();
 		this.status = user.isStatus() ? "Ativado" : "Desativado";
 		this.linkFoto = user.getLinkFoto(); 
 	}
-
+	
+	
 	public Long getId() {
 		return id;
 	}
@@ -39,11 +43,13 @@ public class UserDto {
 		this.login = login;
 	}
 
-	public String getGrupoPermissao() {
+	
+
+	public Set<GrupoPermissaoDomain> getGrupoPermissao() {
 		return grupoPermissao;
 	}
 
-	public void setGrupoPermissao(String grupoPermissao) {
+	public void setGrupoPermissao(Set<GrupoPermissaoDomain> grupoPermissao) {
 		this.grupoPermissao = grupoPermissao;
 	}
 

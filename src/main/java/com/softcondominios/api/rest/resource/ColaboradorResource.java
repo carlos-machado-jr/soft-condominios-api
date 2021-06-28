@@ -1,7 +1,9 @@
 package com.softcondominios.api.rest.resource;
 
 import java.net.URI;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,13 +21,11 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.softcondominios.api.domain.ColaboradorDomain;
-import com.softcondominios.api.domain.FuncaoDomain;
 import com.softcondominios.api.domain.GrupoPermissaoDomain;
 import com.softcondominios.api.domain.UserDomain;
 import com.softcondominios.api.rest.dto.NewColaboradorDto;
 import com.softcondominios.api.rest.dto.ViewColaboradorDto;
 import com.softcondominios.api.service.ColaboradorService;
-import com.softcondominios.api.service.FuncaoService;
 import com.softcondominios.api.service.GrupoPermissaoService;
 import com.softcondominios.api.service.UserService;
 
@@ -50,8 +50,7 @@ public class ColaboradorResource {
 	@Autowired
 	private GrupoPermissaoService grupoPermissaoService;
 	
-	@Autowired
-	private FuncaoService funcaoService;
+
 	
 	
 	@ApiOperation("Retorna uma lista de colaboradores")
@@ -65,7 +64,7 @@ public class ColaboradorResource {
 	}
 	
 	@ApiOperation("Cria colaboradores")
-	@PostMapping("/sindico")
+	@PostMapping
 	public ResponseEntity<NewColaboradorDto> save(@RequestBody NewColaboradorDto colaborador){
 		
 		ColaboradorDomain colaboradorDomain = colaboradorService.save(createColaborador(colaborador));
@@ -85,7 +84,7 @@ public class ColaboradorResource {
 		
 		ColaboradorDomain colaborador = new ColaboradorDomain(newColaborador);
 		colaborador.setUsuario(createUser(newColaborador));
-		colaborador.setFuncao(findByFuncao(newColaborador.getFuncao()));
+		
 		
 		return colaborador;
 	}
@@ -94,17 +93,24 @@ public class ColaboradorResource {
 		
 		UserDomain user = new UserDomain(newColaborador);
 		user.setGrupoPermissao(findGruposByDescricao(newColaborador.getFuncao()));
-		String passwordEncoded = bCryptPasswordEncoder.encode(user.getPassword());
-		user.setPassword(passwordEncoded);
+		user.setPassword(criptografarSenha(user.getPassword()));
 		return userService.save(user);
 	}
 	
-	private FuncaoDomain findByFuncao(String funcao) {
-		return funcaoService.findByFuncao(funcao);
+	
+	private String criptografarSenha(String senha) {
+		return bCryptPasswordEncoder.encode(senha);
 	}
 	
-	private GrupoPermissaoDomain findGruposByDescricao(String descricao) {
-		return grupoPermissaoService.findByDescricao(descricao);
+	private Set<GrupoPermissaoDomain> convertByHashSet(GrupoPermissaoDomain grupoPermissaoDomain){
+		Set<GrupoPermissaoDomain> permissao = new HashSet<GrupoPermissaoDomain>();
+		permissao.add(grupoPermissaoDomain);
+		return permissao;
+	}
+	
+	private Set<GrupoPermissaoDomain> findGruposByDescricao(String descricao) {
+		
+		return convertByHashSet(grupoPermissaoService.findByDescricao(descricao));
 	}
 	
 	private Page<ViewColaboradorDto> convertDto(List<ColaboradorDomain> colaborador) {

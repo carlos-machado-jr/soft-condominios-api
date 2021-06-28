@@ -40,12 +40,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	private static final String[] PUBLIC_MATCHERS = {
 			"/h2-console/**",
-			"/**",
 			"/usuarios",
 			"/grupos-permissoes",
 			"/colaboradores",
 			"/funcoes-colaboradores",
-			"/condominios"
+			
 	};
 
 	private static final String[] PUBLIC_MATCHERS_GET = {
