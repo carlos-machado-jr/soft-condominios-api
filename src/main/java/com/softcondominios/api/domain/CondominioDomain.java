@@ -65,6 +65,9 @@ public class CondominioDomain implements Serializable {
 	@ManyToMany(mappedBy = "condominio")
 	private Set<ColaboradorDomain> colaboradorDomain = new HashSet<>();
 	
+	@JsonIgnore
+	@ManyToMany(mappedBy = "condominio")
+	private MoradorDomain moradorDomain;
 	
 //	construtores ------------//////////-
 //	construtores ------------//////////-
