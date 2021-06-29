@@ -9,7 +9,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -66,8 +69,13 @@ public class CondominioDomain implements Serializable {
 	private Set<ColaboradorDomain> colaboradorDomain = new HashSet<>();
 	
 	@JsonIgnore
-	@ManyToMany(mappedBy = "condominio")
-	private MoradorDomain moradorDomain;
+	@OneToMany(mappedBy = "condominio")
+	private Set<MoradorDomain> moradorDomain = new HashSet<>();
+	
+	@ManyToOne
+	@JoinColumn(name = "con_bar_id")
+	private BairroDomain bairro;
+	
 	
 //	construtores ------------//////////-
 //	construtores ------------//////////-
@@ -191,14 +199,18 @@ public class CondominioDomain implements Serializable {
 	public void setColaboradorDomain(Set<ColaboradorDomain> colaboradorDomain) {
 		this.colaboradorDomain = colaboradorDomain;
 	}
-	// hashcode ----------------==============
-	//hashcode ----------------==============
-	//hashcode ----------------==============
-	//hashcode ----------------==============
-	//hashcode ----------------==============
-	//hashcode ----------------==============
-	
 
+
+	public Set<MoradorDomain> getMoradorDomain() {
+		return moradorDomain;
+	}
+
+
+	public void setMoradorDomain(Set<MoradorDomain> moradorDomain) {
+		this.moradorDomain = moradorDomain;
+	}
+
+	
 	
 
 		

@@ -44,6 +44,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			"/grupos-permissoes",
 			"/colaboradores",
 			"/funcoes-colaboradores",
+			"/moradores/**"
 			
 	};
 

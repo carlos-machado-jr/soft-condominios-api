@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "88e0dd6a-51c9-40f6-9586-96b46d2e5e3c",
+		"_postman_id": "74a983e7-67ba-4378-93df-f876bdee88a6",
 		"name": "soft-condominios",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -12,15 +12,17 @@
 					"name": "criar",
 					"request": {
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"cpf\": \"111.444.555-75\",\r\n  \"email\": \"andre@softcondominios.com\",\r\n  \"funcao\": \"Sindico\",\r\n  \"nome\": \"Andre\",\r\n  \"senha\": \"teste\",\r\n  \"sobrenome\": \"Henrique\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
+							"raw": "{\r\n  \"cpf\": \"111.444.555-75\",\r\n  \"email\": \"andre@softcondominios.com\",\r\n  \"funcao\": \"Sindico\",\r\n  \"nome\": \"Andre\",\r\n  \"senha\": \"teste\",\r\n  \"sobrenome\": \"Henrique\"\r\n}"
 						},
 						"url": {
 							"raw": "http://localhost:8080/colaboradores",
@@ -46,12 +48,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"cpf\": \"148.923.137-42\",\r\n  \"email\": \"machadopnn@gmail.com\",\r\n  \"funcao\": \"Sindico\",\r\n  \"nome\": \"Carlos\",\r\n  \"senha\": \"teste\",\r\n  \"sobrenome\": \"Henrique\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
+							"raw": "{\r\n  \"cpf\": \"148.923.137-42\",\r\n  \"email\": \"machadopnn@gmail.com\",\r\n  \"funcao\": \"Sindico\",\r\n  \"nome\": \"Carlos\",\r\n  \"senha\": \"teste\",\r\n  \"sobrenome\": \"Henrique\"\r\n}"
 						},
 						"url": {
 							"raw": "http://localhost:8080/colaboradores",
@@ -70,21 +67,96 @@
 			]
 		},
 		{
+			"name": "moradores",
+			"item": [
+				{
+					"name": "criar",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"cpf\": \"111.244.555-75\",\r\n  \"email\": \"pat@gmail.com\",\r\n  \"apartamento\": \"102\",\r\n  \"bloco\":\"12B\",\r\n  \"nome\": \"patrick\",\r\n  \"senha\": \"teste\",\r\n  \"sobrenome\": \"Henrique\"\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/moradores?condominioId=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"moradores"
+							],
+							"query": [
+								{
+									"key": "condominioId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "listar",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbmRyZUBzb2Z0Y29uZG9taW5pb3MuY29tIiwiZXhwIjoxNjI1MDExMTMzfQ.lH0Zn6ksi_OtBxC-GGZj0lI-ptFIyYRrS74Q3OodTTuy3eERK-7fHknxaMmAB_7HWcCXtNCw-oryEkBl9giF7w",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"cpf\": \"148.923.137-42\",\r\n  \"email\": \"machadopnn@gmail.com\",\r\n  \"funcao\": \"Sindico\",\r\n  \"nome\": \"Carlos\",\r\n  \"senha\": \"teste\",\r\n  \"sobrenome\": \"Henrique\"\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/moradores",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"moradores"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "usuarios",
 			"item": [
 				{
 					"name": "criar",
 					"request": {
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"cpf\": \"555.444.555-75\",\r\n  \"email\": \"admin@softcondominios.com\",\r\n  \"funcao\": \"Zelador\",\r\n  \"nome\": \"Carlos\",\r\n  \"senha\": \"teste\",\r\n  \"sobrenome\": \"Henrique\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
+							"raw": "{\r\n  \"cpf\": \"555.444.555-75\",\r\n  \"email\": \"admin@softcondominios.com\",\r\n  \"funcao\": \"Zelador\",\r\n  \"nome\": \"Carlos\",\r\n  \"senha\": \"teste\",\r\n  \"sobrenome\": \"Henrique\"\r\n}"
 						},
 						"url": {
 							"raw": "http://localhost:8080/colaboradores",
@@ -110,22 +182,17 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"cpf\": \"148.923.137-42\",\r\n  \"email\": \"machadopnn@gmail.com\",\r\n  \"funcao\": \"Sindico\",\r\n  \"nome\": \"Carlos\",\r\n  \"senha\": \"teste\",\r\n  \"sobrenome\": \"Henrique\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
+							"raw": "{\r\n  \"cpf\": \"148.923.137-42\",\r\n  \"email\": \"machadopnn@gmail.com\",\r\n  \"funcao\": \"Sindico\",\r\n  \"nome\": \"Carlos\",\r\n  \"senha\": \"teste\",\r\n  \"sobrenome\": \"Henrique\"\r\n}"
 						},
 						"url": {
-							"raw": "http://localhost:8080/colaboradores",
+							"raw": "http://localhost:8080/usuarios",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"colaboradores"
+								"usuarios"
 							]
 						}
 					},
@@ -143,18 +210,19 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJtYWNoYWRvcG5uQGdtYWlsLmNvbSIsImV4cCI6MTYyNDg2Njc1NH0.B1iW7ebEwRnBlEhyW1JEu912NvN9NrY12JvVhvTQPEWzWg_4GkLBULsXDxK00djhfP54yI2zIs-PGCDntyT0dQ",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbmRyZUBzb2Z0Y29uZG9taW5pb3MuY29tIiwiZXhwIjoxNjI1MDExOTUzfQ.NejQyxWfKwYSbnC0LUGODvTGpjWWDo3FwAPMligpFDn1geZ3BbT9_Kk4S2fMLbjvoD3i9jue8Lg2jkYVadZI7g",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
 								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": " {\r\n            \"cep\": \"24466-442\",\r\n            \"rua\": \"Rua adones bella\",\r\n            \"numero\": \"3654\",\r\n            \"razaoSocial\": \"Condominio Fores Bella LTDA.\",\r\n            \"nomeFantasia\": \"Condominio Fores Bella\",\r\n            \"cnpj\": \"1000022/1077\",\r\n            \"linkContratoSocial\": null\r\n        }",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
+							"raw": " {\r\n            \"cep\": \"24466-442\",\r\n            \"rua\": \"Rua adones bella\",\r\n            \"numero\": \"3654\",\r\n            \"razaoSocial\": \"Condominio Fores Bella LTDA.\",\r\n            \"nomeFantasia\": \"Condominio Fores Bella\",\r\n            \"cnpj\": \"1000022/1077\",\r\n            \"linkContratoSocial\": null\r\n        }"
 						},
 						"url": {
 							"raw": "http://localhost:8080/condominios",
@@ -180,18 +248,13 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJtYWNoYWRvcG5uQGdtYWlsLmNvbSIsImV4cCI6MTYyNDg2Njc1NH0.B1iW7ebEwRnBlEhyW1JEu912NvN9NrY12JvVhvTQPEWzWg_4GkLBULsXDxK00djhfP54yI2zIs-PGCDntyT0dQ",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbkBzb2Z0Y29uZG9taW5pb3MuY29tIiwiZXhwIjoxNjI1MDAyOTk3fQ._ZwghsvDNks_CxHaVyml4sBj8qFiKqG_rjArky9N6fs7A2zl0S90aG6KOZK-fYZtEEaMGoERxMbX4xSG3E7ZHw",
 								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"cpf\": \"148.923.137-42\",\r\n  \"email\": \"machadopnn@gmail.com\",\r\n  \"funcao\": \"Sindico\",\r\n  \"nome\": \"Carlos\",\r\n  \"senha\": \"teste\",\r\n  \"sobrenome\": \"Henrique\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
+							"raw": "{\r\n  \"cpf\": \"148.923.137-42\",\r\n  \"email\": \"machadopnn@gmail.com\",\r\n  \"funcao\": \"Sindico\",\r\n  \"nome\": \"Carlos\",\r\n  \"senha\": \"teste\",\r\n  \"sobrenome\": \"Henrique\"\r\n}"
 						},
 						"url": {
 							"raw": "http://localhost:8080/condominios",
@@ -219,12 +282,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"descricao\": \"Zelador\"\r\n \r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
+							"raw": "{\r\n  \"descricao\": \"Zelador\"\r\n \r\n}"
 						},
 						"url": {
 							"raw": "http://localhost:8080/grupos-permissoes",
@@ -250,12 +308,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"cpf\": \"148.923.137-42\",\r\n  \"email\": \"machadopnn@gmail.com\",\r\n  \"funcao\": \"Sindico\",\r\n  \"nome\": \"Carlos\",\r\n  \"senha\": \"teste\",\r\n  \"sobrenome\": \"Henrique\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
+							"raw": "{\r\n  \"cpf\": \"148.923.137-42\",\r\n  \"email\": \"machadopnn@gmail.com\",\r\n  \"funcao\": \"Sindico\",\r\n  \"nome\": \"Carlos\",\r\n  \"senha\": \"teste\",\r\n  \"sobrenome\": \"Henrique\"\r\n}"
 						},
 						"url": {
 							"raw": "http://localhost:8080/grupos-permissoes",
@@ -280,15 +333,17 @@
 					"name": "login",
 					"request": {
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\":\"andre@softcondominios.com\",\r\n    \"senha\":\"teste\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
+							"raw": "{\r\n    \"email\":\"pat@gmail.com\",\r\n    \"senha\":\"teste\"\r\n}"
 						},
 						"url": {
 							"raw": "http://localhost:8080/login",

@@ -26,7 +26,7 @@ public class GrupoPermissaoDomain implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long Id;
 	
-	@Column
+	@Column(columnDefinition = "varchar(100)", nullable = false, unique = true)
 	private String descricao;
 	
 	@JsonIgnore

@@ -17,6 +17,7 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.softcondominios.api.rest.dto.NewColaboradorDto;
+import com.softcondominios.api.rest.dto.NewMoradorDto;
 import com.softcondominios.api.rest.dto.NewUserDto;
 
 @Entity
@@ -57,6 +58,10 @@ public class UserDomain implements Serializable{
 	@OneToOne(mappedBy = "usuario")
 	private ColaboradorDomain colaborador;
 	
+	@JsonIgnore
+	@OneToOne(mappedBy = "usuario")
+	private MoradorDomain morador;
+	
 	public UserDomain() {
 		// TODO Auto-generated constructor stub
 	}
@@ -75,6 +80,14 @@ public class UserDomain implements Serializable{
 		this.password = newColaboradorDto.getSenha();
 		this.status = true;
 		this.linkFoto = newColaboradorDto.getLinkFoto();
+	}
+	
+	public UserDomain(NewMoradorDto newMoradorDto) {
+		this.id = null;
+		this.login = newMoradorDto.getEmail();
+		this.password = newMoradorDto.getSenha();
+		this.status = true;
+		this.linkFoto = newMoradorDto.getLinkFoto();
 	}
 
 	public Long getId() {

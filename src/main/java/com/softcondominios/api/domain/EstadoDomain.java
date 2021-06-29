@@ -67,6 +67,8 @@ public class EstadoDomain  implements Serializable {
 	//getters e setters -----------------------------------------------
 	//getters e setters -----------------------------------------------
 	
+
+
 	public Long getId() {
 		return id;
 	}
@@ -91,7 +93,44 @@ public class EstadoDomain  implements Serializable {
 		this.cidadeDomain = cidadeDomain;
 	}
 	
-	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((UF == null) ? 0 : UF.hashCode());
+		result = prime * result + ((cidadeDomain == null) ? 0 : cidadeDomain.hashCode());
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		return result;
+	}
+
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		EstadoDomain other = (EstadoDomain) obj;
+		if (UF == null) {
+			if (other.UF != null)
+				return false;
+		} else if (!UF.equals(other.UF))
+			return false;
+		if (cidadeDomain == null) {
+			if (other.cidadeDomain != null)
+				return false;
+		} else if (!cidadeDomain.equals(other.cidadeDomain))
+			return false;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		return true;
+	}
+
 	
 	
 }
