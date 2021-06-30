@@ -1,6 +1,7 @@
 package com.softcondominios.api.domain;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -27,7 +28,7 @@ public class EstadoDomain  implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@Column(columnDefinition = "varchar(10)", nullable = false, unique = true)
+	@Column(columnDefinition = "varchar(10)", nullable = false)
 	@NotNull
 	private String UF;
 	
@@ -38,7 +39,7 @@ public class EstadoDomain  implements Serializable {
 	
 	@JsonIgnore
 	@OneToMany(mappedBy = "estadoDomain")
-	private Set<CidadeDomain> cidadeDomain;
+	private Set<CidadeDomain> cidadeDomain = new HashSet<>();
 
 	
 //	construtores ------------//////////-
@@ -52,11 +53,10 @@ public class EstadoDomain  implements Serializable {
 	}
 
 	
-	public EstadoDomain(Long id, @NotNull String uF, Set<CidadeDomain> cidadeDomain) {
+	public EstadoDomain( @NotNull String uF) {
 		super();
-		this.id = id;
 		UF = uF;
-		this.cidadeDomain = cidadeDomain;
+		
 	}
 
 	
@@ -93,43 +93,8 @@ public class EstadoDomain  implements Serializable {
 		this.cidadeDomain = cidadeDomain;
 	}
 	
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((UF == null) ? 0 : UF.hashCode());
-		result = prime * result + ((cidadeDomain == null) ? 0 : cidadeDomain.hashCode());
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		return result;
-	}
-
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		EstadoDomain other = (EstadoDomain) obj;
-		if (UF == null) {
-			if (other.UF != null)
-				return false;
-		} else if (!UF.equals(other.UF))
-			return false;
-		if (cidadeDomain == null) {
-			if (other.cidadeDomain != null)
-				return false;
-		} else if (!cidadeDomain.equals(other.cidadeDomain))
-			return false;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		return true;
-	}
+	
+	
 
 	
 	

@@ -8,4 +8,7 @@ import com.softcondominios.api.domain.EstadoDomain;
 @Repository
 public interface EstadoRepository extends JpaRepository<EstadoDomain, Long>{
 
+
+	EstadoDomain findByUF(String uf);
+
 }

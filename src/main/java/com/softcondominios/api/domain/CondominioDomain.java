@@ -19,6 +19,7 @@ import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.Length;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.softcondominios.api.rest.dto.NewCondominioDto;
 
 @Entity
 @Table(name = "tb_condominio")
@@ -88,21 +89,21 @@ public class CondominioDomain implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 
-
-	public CondominioDomain(Long id, @NotNull @Length(min = 10, max = 10) String cep, @NotNull String rua, String numero,
-			@NotNull String razaoSocial, String nomeFantasia, @NotNull String cnpj, String linkContratoSocial,
-			Set<ColaboradorDomain> colaboradorDomain) {
+	public CondominioDomain(NewCondominioDto condominio, Set<ColaboradorDomain> colaborador, BairroDomain bairro) {
 		super();
-		this.id = id;
-		this.cep = cep;
-		this.rua = rua;
-		this.numero = numero;
-		this.razaoSocial = razaoSocial;
-		this.nomeFantasia = nomeFantasia;
-		this.cnpj = cnpj;
-		this.linkContratoSocial = linkContratoSocial;
-		this.colaboradorDomain = colaboradorDomain;
+		this.id = null;
+		this.cep = condominio.getCep();
+		this.rua = condominio.getRua();
+		this.numero = condominio.getNumero();
+		this.razaoSocial = condominio.getRazaoSocial();
+		this.nomeFantasia = condominio.getNomeFantasia();
+		this.cnpj = condominio.getCnpj();
+		this.linkContratoSocial = condominio.getLinkContrato();
+		this.colaboradorDomain = colaborador;
+		this.bairro = bairro;
 	}
+
+
 	
 	//getters e setters -----------------------------------------------
 	//getters e setters -----------------------------------------------
@@ -208,6 +209,14 @@ public class CondominioDomain implements Serializable {
 
 	public void setMoradorDomain(Set<MoradorDomain> moradorDomain) {
 		this.moradorDomain = moradorDomain;
+	}
+
+	public BairroDomain getBairro() {
+		return bairro;
+	}
+
+	public void setBairro(BairroDomain bairro) {
+		this.bairro = bairro;
 	}
 
 	

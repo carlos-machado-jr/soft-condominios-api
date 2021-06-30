@@ -1,6 +1,7 @@
 package com.softcondominios.api.domain;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -45,7 +46,7 @@ public class CidadeDomain  implements Serializable {
 	
 	@JsonIgnore
 	@OneToMany(mappedBy = "cidadeDomain")
-	private Set<BairroDomain> bairroDomain;
+	private Set<BairroDomain> bairroDomain = new HashSet<>();
 	
 //	construtores ------------//////////-
 //	construtores ------------//////////-
@@ -57,12 +58,12 @@ public class CidadeDomain  implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public CidadeDomain(Long id, @NotNull String descricao, EstadoDomain estadoDomain, Set<BairroDomain> bairroDomain) {
+	public CidadeDomain( @NotNull String descricao, EstadoDomain estadoDomain) {
 		super();
-		this.id = id;
+		
 		this.descricao = descricao;
 		this.estadoDomain = estadoDomain;
-		this.bairroDomain = bairroDomain;
+		
 	}
 
 	//getters e setters -----------------------------------------------
@@ -104,48 +105,7 @@ public class CidadeDomain  implements Serializable {
 		this.bairroDomain = bairroDomain;
 	}
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((bairroDomain == null) ? 0 : bairroDomain.hashCode());
-		result = prime * result + ((descricao == null) ? 0 : descricao.hashCode());
-		result = prime * result + ((estadoDomain == null) ? 0 : estadoDomain.hashCode());
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		return result;
-	}
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		CidadeDomain other = (CidadeDomain) obj;
-		if (bairroDomain == null) {
-			if (other.bairroDomain != null)
-				return false;
-		} else if (!bairroDomain.equals(other.bairroDomain))
-			return false;
-		if (descricao == null) {
-			if (other.descricao != null)
-				return false;
-		} else if (!descricao.equals(other.descricao))
-			return false;
-		if (estadoDomain == null) {
-			if (other.estadoDomain != null)
-				return false;
-		} else if (!estadoDomain.equals(other.estadoDomain))
-			return false;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		return true;
-	}
 		
 
 	

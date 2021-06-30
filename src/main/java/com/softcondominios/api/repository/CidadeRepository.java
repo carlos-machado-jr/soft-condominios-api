@@ -8,4 +8,6 @@ import com.softcondominios.api.domain.CidadeDomain;
 @Repository
 public interface CidadeRepository extends JpaRepository<CidadeDomain, Long>{
 
+	CidadeDomain findByDescricao(String descricao);
+
 }

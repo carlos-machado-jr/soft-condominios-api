@@ -8,8 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,9 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.softcondominios.api.domain.ColaboradorDomain;
 import com.softcondominios.api.domain.CondominioDomain;
-import com.softcondominios.api.service.ColaboradorService;
+import com.softcondominios.api.rest.dto.NewCondominioDto;
 import com.softcondominios.api.service.CondominioService;
 
 import io.swagger.annotations.Api;
@@ -35,8 +32,7 @@ public class CondominioResource {
 	@Autowired
 	private CondominioService condominioService;
 	
-	@Autowired
-	private ColaboradorService colaboradorService;
+
 	
 	
 	@ApiOperation(value = "Retorna uma lista de condominios")
@@ -54,13 +50,11 @@ public class CondominioResource {
 	
 	@ApiOperation("Cria um condominio")
 	@PostMapping
-	public ResponseEntity<CondominioDomain> save(@RequestBody CondominioDomain condominioDomain){
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		ColaboradorDomain colaborador = colaboradorService.findByEmail(auth.getName());
+	public ResponseEntity<CondominioDomain> save(@RequestBody NewCondominioDto condominioDto){
+	
 		
-		CondominioDomain condominio = condominioService.save(condominioDomain);
-		colaborador.getCondominio().add(condominio);
-		colaboradorService.update(colaborador);
+		CondominioDomain condominio = condominioService.save(condominioDto);
+		
 		
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(condominio.getId()).toUri();
 		return ResponseEntity.created(uri).build();

@@ -40,9 +40,9 @@ public class ViewCondominioDto implements Serializable{
 		this.nomeFantazia = condominio.getRazaoSocial();
 		this.cnpj = condominio.getCnpj();
 		this.linkContratoSocial = condominio.getLinkContratoSocial();
-//		this.bairro = bairro;
-//		this.cidade = cidade;
-//		this.estado = estado;
+		this.bairro = condominio.getBairro().getDescricao();
+		this.cidade = condominio.getBairro().getCidadeDomain().getDescricao();
+		this.estado = condominio.getBairro().getCidadeDomain().getEstadoDomain().getUF();
 	}
 
 
