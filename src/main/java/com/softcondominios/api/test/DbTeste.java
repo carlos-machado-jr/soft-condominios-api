@@ -17,13 +17,13 @@ public class DbTeste {
 	private GrupoPermissaoRepository grupoPermissaoRepository;
 	
 	public void criarPermissoes() throws ParseException {
-		GrupoPermissaoDomain p1 = new GrupoPermissaoDomain("Administrador");
-		GrupoPermissaoDomain p2 = new GrupoPermissaoDomain("Sindico");
-		GrupoPermissaoDomain p3 = new GrupoPermissaoDomain("Zelador");
-		GrupoPermissaoDomain p4 = new GrupoPermissaoDomain("Porteiro");
-		GrupoPermissaoDomain p5 = new GrupoPermissaoDomain("Morador");
-		List<GrupoPermissaoDomain> grp = Arrays.asList(p1,p2,p3,p4,p5);
-		grupoPermissaoRepository.saveAll(grp);
+//		GrupoPermissaoDomain p1 = new GrupoPermissaoDomain("Administrador");
+//		GrupoPermissaoDomain p2 = new GrupoPermissaoDomain("Sindico");
+//		GrupoPermissaoDomain p3 = new GrupoPermissaoDomain("Zelador");
+//		GrupoPermissaoDomain p4 = new GrupoPermissaoDomain("Porteiro");
+//		GrupoPermissaoDomain p5 = new GrupoPermissaoDomain("Morador");
+//		List<GrupoPermissaoDomain> grp = Arrays.asList(p1,p2,p3,p4,p5);
+//		grupoPermissaoRepository.saveAll(grp);
 		
 	}
 
