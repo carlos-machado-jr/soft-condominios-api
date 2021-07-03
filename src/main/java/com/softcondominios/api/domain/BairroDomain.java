@@ -15,6 +15,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "tb_bairro")
 public class BairroDomain  implements Serializable {
@@ -41,6 +43,7 @@ public class BairroDomain  implements Serializable {
 	@JoinColumn(name = "bar_cid_id")
 	private CidadeDomain cidadeDomain;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "bairro")
 	private Set<CondominioDomain> condominio = new HashSet<>();
 	

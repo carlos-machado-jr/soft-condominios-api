@@ -91,6 +91,13 @@ public class CondominioService {
 		return colaboradorService.findByEmail(auth.getName());
 	}
 	
+	public ColaboradorDomain findByBairro(Long id) {
+		
+		BairroDomain bairro = bairroService.findById(id);
+		
+		return condominioRepository.findByBairro(bairro.getId()).orElseThrow(() ->
+				new ObjectNotFoundException("bairro nao encontrado! bairro: " + bairro.getDescricao() + ", Tipo: " + CondominioDomain.class.getName()));
+	}
 	
 
 	private Set<BairroDomain> convertToSetObject(BairroDomain object){

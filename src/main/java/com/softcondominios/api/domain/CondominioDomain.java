@@ -34,9 +34,8 @@ public class CondominioDomain implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@Column(columnDefinition = "varchar(10)", nullable = false, unique = true)
+	@Column(columnDefinition = "varchar(11)", nullable = false)
 	@NotNull
-	@Length(min = 9, max = 9)
 	private String cep;
 	
 	@Column(columnDefinition = "varchar(50)", nullable = false)
@@ -72,6 +71,7 @@ public class CondominioDomain implements Serializable {
 	@JsonIgnore
 	@OneToMany(mappedBy = "condominio")
 	private Set<MoradorDomain> moradorDomain = new HashSet<>();
+	
 	
 	@ManyToOne
 	@JoinColumn(name = "con_bar_id")
