@@ -1,4 +1,4 @@
-package com.softcondominios.api.domain;
+	package com.softcondominios.api.domain;
 
 import java.io.Serializable;
 import java.util.HashSet;
@@ -15,8 +15,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
-
-import org.hibernate.validator.constraints.Length;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.softcondominios.api.rest.dto.NewCondominioDto;

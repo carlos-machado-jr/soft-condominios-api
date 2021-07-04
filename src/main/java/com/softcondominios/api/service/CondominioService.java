@@ -20,9 +20,10 @@ import com.softcondominios.api.domain.EstadoDomain;
 import com.softcondominios.api.repository.CondominioRepository;
 import com.softcondominios.api.rest.dto.NewCondominioDto;
 import com.softcondominios.api.service.exceptions.ObjectNotFoundException;
+import com.softcondominios.api.service.specifications.CondominioServiceSpecifications;
 
 @Service
-public class CondominioService {
+public class CondominioService extends CondominioServiceSpecifications{
 	@Autowired
 	private CondominioRepository condominioRepository;
 	
@@ -91,12 +92,9 @@ public class CondominioService {
 		return colaboradorService.findByEmail(auth.getName());
 	}
 	
-	public ColaboradorDomain findByBairro(Long id) {
+	public Page<CondominioDomain> search(String bairro, String cidade, String estado, String razaoSocial, Pageable pageable) {
 		
-		BairroDomain bairro = bairroService.findById(id);
-		
-		return condominioRepository.findByBairro(bairro.getId()).orElseThrow(() ->
-				new ObjectNotFoundException("bairro nao encontrado! bairro: " + bairro.getDescricao() + ", Tipo: " + CondominioDomain.class.getName()));
+		return condominioRepository.findAll(search(bairro, cidade, estado, razaoSocial), pageable);
 	}
 	
 

@@ -18,9 +18,10 @@ import com.softcondominios.api.repository.MoradorRepository;
 import com.softcondominios.api.repository.UserRepository;
 import com.softcondominios.api.rest.dto.NewMoradorDto;
 import com.softcondominios.api.service.exceptions.DataIntegrityException;
+import com.softcondominios.api.service.specifications.MoradorServiceSpecifications;
 
 @Service
-public class MoradorService {
+public class MoradorService extends MoradorServiceSpecifications{
 
 	@Autowired
 	private MoradorRepository moradorRepository;
@@ -41,6 +42,11 @@ public class MoradorService {
 		return moradorRepository.findAll(pageable);
 	}
 	
+	public Page<MoradorDomain> search(Long condominio, String nome, Pageable pageable){
+		
+		return moradorRepository.findAll(search(condominio,nome), pageable);
+	}
+	
 	@Transactional
 	public MoradorDomain save( NewMoradorDto newMoradorDto, Long id) {
 		try {
@@ -55,7 +61,7 @@ public class MoradorService {
 	}
 	
 	
-	
+
 	private UserDomain createUser(NewMoradorDto newMoradorDto) {
 		
 		UserDomain user = new UserDomain(newMoradorDto);

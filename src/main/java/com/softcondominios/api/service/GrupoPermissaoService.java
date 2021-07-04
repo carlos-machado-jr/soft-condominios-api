@@ -23,8 +23,16 @@ public class GrupoPermissaoService {
 	
 	
 	public GrupoPermissaoDomain findByDescricao(String descricao) {
-		return grupoPermissaoRepository.findByDescricao(descricao).orElseThrow(() -> 
-												new ObjectNotFoundException("Permissão nao encontrada! permissão: " + descricao + ", Tipo: " + GrupoPermissaoDomain.class.getName()));
+		try {
+			return grupoPermissaoRepository.findByDescricao(descricao);
+			
+		} catch (ObjectNotFoundException e) {
+			
+			throw new ObjectNotFoundException("Permissão nao encontrada! permissão: " + descricao + ", Tipo: " + GrupoPermissaoDomain.class.getName());
+		}
+		
+				
+				
 	}
 	
 	public GrupoPermissaoDomain save(GrupoPermissaoDomain g) {

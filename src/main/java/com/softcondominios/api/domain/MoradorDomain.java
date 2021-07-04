@@ -47,11 +47,11 @@ public class MoradorDomain implements Serializable {
 	@NotNull
 	private String cpf;
 	
-	@Column(columnDefinition = "varchar(20)", nullable = false, unique = true)
+	@Column(columnDefinition = "varchar(20)", nullable = false)
 	@NotNull
 	private String apartamento;
 	
-	@Column(columnDefinition = "varchar(20)", nullable = false, unique = true)
+	@Column(columnDefinition = "varchar(20)", nullable = false)
 	@NotNull
 	private String bloco;
 	
@@ -250,6 +250,8 @@ public class MoradorDomain implements Serializable {
 	public void setUsuario(UserDomain usuario) {
 		this.usuario = usuario;
 	}
+
+	
 	
 	
 	
