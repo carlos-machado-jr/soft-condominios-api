@@ -49,9 +49,9 @@ public class ColaboradorService extends ColaboradorServiceSpecifications{
 		return colaboradorRepository.save(convertToDomain(newColaborador));
 	}
 	
-//	public ColaboradorDomain update(ColaboradorDomain colaboradorDomain) {
-//		return colaboradorRepository.save(colaboradorDomain);
-//	}
+	public ColaboradorDomain update(ColaboradorDomain colaboradorDomain) {
+		return colaboradorRepository.save(colaboradorDomain);
+	}
 
 
 	private ColaboradorDomain convertToDomain(NewColaboradorDto newColaborador) {

@@ -1,5 +1,6 @@
 package com.softcondominios.api.service;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -87,7 +88,13 @@ public class UserService {
 	
 	private Set<GrupoPermissaoDomain> findGruposByDescricao(String descricao) {
 		
-		return Set.of(grupoPermissaoService.findByDescricao(descricao));
+		return convertByHashSet(grupoPermissaoService.findByDescricao(descricao));
+	}
+	
+	private Set<GrupoPermissaoDomain> convertByHashSet(GrupoPermissaoDomain grupoPermissaoDomain){
+		Set<GrupoPermissaoDomain> permissao = new HashSet<GrupoPermissaoDomain>();
+		permissao.add(grupoPermissaoDomain);
+		return permissao;
 	}
 	
 	
