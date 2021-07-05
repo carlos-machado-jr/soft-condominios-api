@@ -85,9 +85,9 @@ public class ColaboradorDomain implements Serializable {
 	public ColaboradorDomain(NewColaboradorDto newColaborador) {
 		
 		this.id = null;
-		this.nome = newColaborador.getNome();
-		this.sobrenome = newColaborador.getSobrenome();
-		this.email = newColaborador.getEmail();
+		this.nome = newColaborador.getNome().toLowerCase();
+		this.sobrenome = newColaborador.getSobrenome().toLowerCase();
+		this.email = newColaborador.getEmail().toLowerCase();
 		this.cpf = newColaborador.getCpf();
 		this.funcao = newColaborador.getFuncao();
 		this.status = true;

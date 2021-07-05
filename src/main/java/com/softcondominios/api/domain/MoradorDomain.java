@@ -90,12 +90,12 @@ public class MoradorDomain implements Serializable {
 	public MoradorDomain(NewMoradorDto newMoradorDto) {
 		
 		this.id = null;
-		this.nome = newMoradorDto.getNome();
-		this.sobrenome = newMoradorDto.getSobrenome();
-		this.email = newMoradorDto.getEmail();
+		this.nome = newMoradorDto.getNome().toLowerCase();
+		this.sobrenome = newMoradorDto.getSobrenome().toLowerCase();
+		this.email = newMoradorDto.getEmail().toLowerCase();
 		this.cpf = newMoradorDto.getCpf();
-		this.apartamento = newMoradorDto.getApartamento();
-		this.bloco = newMoradorDto.getBloco();
+		this.apartamento = newMoradorDto.getApartamento().toLowerCase();
+		this.bloco = newMoradorDto.getBloco().toUpperCase();
 		this.status = true;
 		
 	}

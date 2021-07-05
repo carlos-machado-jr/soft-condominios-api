@@ -91,10 +91,10 @@ public class CondominioDomain implements Serializable {
 		super();
 		this.id = null;
 		this.cep = condominio.getCep();
-		this.rua = condominio.getRua();
+		this.rua = condominio.getRua().toLowerCase();
 		this.numero = condominio.getNumero();
-		this.razaoSocial = condominio.getRazaoSocial();
-		this.nomeFantasia = condominio.getNomeFantasia();
+		this.razaoSocial = condominio.getRazaoSocial().toLowerCase();
+		this.nomeFantasia = condominio.getNomeFantasia().toLowerCase();
 		this.cnpj = condominio.getCnpj();
 		this.linkContratoSocial = condominio.getLinkContrato();
 		this.colaboradorDomain = colaborador;

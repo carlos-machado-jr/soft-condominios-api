@@ -94,7 +94,7 @@ public class CondominioService extends CondominioServiceSpecifications{
 	
 	public Page<CondominioDomain> search(String bairro, String cidade, String estado, String razaoSocial, Pageable pageable) {
 		
-		return condominioRepository.findAll(search(bairro, cidade, estado, razaoSocial), pageable);
+		return condominioRepository.findAll(search(bairro.toLowerCase(), cidade.toLowerCase(), estado.toLowerCase(), razaoSocial.toLowerCase()), pageable);
 	}
 	
 
@@ -112,7 +112,7 @@ public class CondominioService extends CondominioServiceSpecifications{
 	private BairroDomain saveBairro(String bairro, CidadeDomain cidade) {
 		
 		if(bairroService.findByDescricao(bairro) == null) {
-			return bairroService.save(new BairroDomain(bairro, cidade));	
+			return bairroService.save(new BairroDomain(bairro.toLowerCase(), cidade));	
 		}
 		return bairroService.findByDescricao(bairro);
 	}
@@ -131,7 +131,7 @@ public class CondominioService extends CondominioServiceSpecifications{
 	
 	private CidadeDomain saveCidade(String cidade, EstadoDomain estado) {
 		if(cidadeService.findByDescricao(cidade) == null) {
-			return cidadeService.save(new CidadeDomain(cidade, estado));
+			return cidadeService.save(new CidadeDomain(cidade.toLowerCase(), estado));
 		}
 		return cidadeService.findByDescricao(cidade);
 	}
@@ -143,7 +143,7 @@ public class CondominioService extends CondominioServiceSpecifications{
 	}
 	private EstadoDomain saveEstado(String estado) {
 		if(estadoService.findByUF(estado) == null) {
-			return estadoService.save(new EstadoDomain(estado));	
+			return estadoService.save(new EstadoDomain(estado.toUpperCase()));	
 		}
 		return  estadoService.findByUF(estado);
 	}
