@@ -1,7 +1,7 @@
 {
 	"info": {
-		"_postman_id": "919e62d3-7f78-46e2-b717-42f5d9d5a65a",
-		"name": "soft-condominios",
+		"_postman_id": "819770aa-a231-435c-878b-7bb8a055f3c9",
+		"name": "soft-condominios producao",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -22,15 +22,17 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"cpf\": \"111.444.555-00\",\r\n  \"email\": \"sindico@softcondominios.com\",\r\n  \"funcao\": \"Sindico\",\r\n  \"nome\": \"Patrick\",\r\n  \"senha\": \"teste\",\r\n  \"sobrenome\": \"Souza\"\r\n}"
+							"raw": "{\r\n  \"cpf\": \"111.444.555-70\",\r\n  \"email\": \"sindico@softcondominios.com\",\r\n  \"funcao\": \"Sindico\",\r\n  \"nome\": \"Andre\",\r\n  \"senha\": \"teste\",\r\n  \"sobrenome\": \"Henrique\"\r\n}"
 						},
 						"url": {
-							"raw": "http://localhost:8080/colaboradores",
+							"raw": "http://app.axdeveloper.com.br/colaboradores",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"app",
+								"axdeveloper",
+								"com",
+								"br"
 							],
-							"port": "8080",
 							"path": [
 								"colaboradores"
 							]
@@ -45,24 +47,20 @@
 					},
 					"request": {
 						"method": "GET",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbmRyZUBzb2Z0Y29uZG9taW5pb3MuY29tIiwiZXhwIjoxNjI1NTE1MjczfQ.CD2MWPbelgMW_-QOB9Cqy8ZCaw7pGFxCRxrAMoc3yeaaAQEe5jdUwk43kHW6VndTGcOK0TOEWMEZgcktrRTHEg",
-								"type": "text"
-							}
-						],
+						"header": [],
 						"body": {
 							"mode": "raw",
 							"raw": "{\r\n  \"cpf\": \"148.923.137-42\",\r\n  \"email\": \"machadopnn@gmail.com\",\r\n  \"funcao\": \"Sindico\",\r\n  \"nome\": \"Carlos\",\r\n  \"senha\": \"teste\",\r\n  \"sobrenome\": \"Henrique\"\r\n}"
 						},
 						"url": {
-							"raw": "http://localhost:8080/colaboradores",
+							"raw": "http://app.axdeveloper.com.br/colaboradores",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"app",
+								"axdeveloper",
+								"com",
+								"br"
 							],
-							"port": "8080",
 							"path": [
 								"colaboradores"
 							]
@@ -89,12 +87,14 @@
 							"raw": "{\r\n  \"cpf\": \"148.923.137-42\",\r\n  \"email\": \"machadopnn@gmail.com\",\r\n  \"funcao\": \"Sindico\",\r\n  \"nome\": \"Carlos\",\r\n  \"senha\": \"teste\",\r\n  \"sobrenome\": \"Henrique\"\r\n}"
 						},
 						"url": {
-							"raw": "http://localhost:8080/colaboradores/auth",
+							"raw": "http://app.axdeveloper.com.br/colaboradores/auth",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"app",
+								"axdeveloper",
+								"com",
+								"br"
 							],
-							"port": "8080",
 							"path": [
 								"colaboradores",
 								"auth"
@@ -122,24 +122,22 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"cpf\": \"011.052.005-00\",\r\n  \"email\": \"carlosjose@gmail.com\",\r\n  \"apartamento\": \"110\",\r\n  \"bloco\":\"A\",\r\n  \"nome\": \"jose\",\r\n  \"senha\": \"teste\",\r\n  \"sobrenome\": \"Henrique\"\r\n}"
+							"raw": "{\r\n  \"cpf\": \"011.052.005-75\",\r\n  \"email\": \"ca@gmail.com\",\r\n  \"apartamento\": \"110\",\r\n  \"bloco\":\"A\",\r\n  \"nome\": \"carlos\",\r\n  \"senha\": \"teste\",\r\n  \"sobrenome\": \"Henrique\"\r\n}"
 						},
 						"url": {
-							"raw": "http://app.axdeveloper.com.br/moradores?condominioId=35",
+							"raw": "http://localhost:8080/moradores?condominioId=2",
 							"protocol": "http",
 							"host": [
-								"app",
-								"axdeveloper",
-								"com",
-								"br"
+								"localhost"
 							],
+							"port": "8080",
 							"path": [
 								"moradores"
 							],
 							"query": [
 								{
 									"key": "condominioId",
-									"value": "35"
+									"value": "2"
 								}
 							]
 						}
@@ -197,7 +195,7 @@
 							"raw": "{\r\n  \"cpf\": \"148.923.137-42\",\r\n  \"email\": \"machadopnn@gmail.com\",\r\n  \"funcao\": \"Sindico\",\r\n  \"nome\": \"Carlos\",\r\n  \"senha\": \"teste\",\r\n  \"sobrenome\": \"Henrique\"\r\n}"
 						},
 						"url": {
-							"raw": "http://localhost:8080/moradores/search?email=jos@gmail.com",
+							"raw": "http://localhost:8080/moradores/search?condominio=2&nome=ca",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -209,8 +207,12 @@
 							],
 							"query": [
 								{
-									"key": "email",
-									"value": "jos@gmail.com"
+									"key": "condominio",
+									"value": "2"
+								},
+								{
+									"key": "nome",
+									"value": "ca"
 								}
 							]
 						}
@@ -279,7 +281,7 @@
 					"response": []
 				},
 				{
-					"name": "buscar usuarios autenticados",
+					"name": "buscar usuarios autenticados Copy",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -288,7 +290,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJDYXJsb3MyQGdtYWlsLmNvbSIsImV4cCI6MTYyNTYwMDI5M30.zTxdGjQG9Fa8o-o5KdxZ116BHrTwGw0h7tbH9ZHFt-hGTXJwSO95JA2axCuVv6ITvnUrFqo8VRv7duFxl5IxbQ",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbmRyZUBzb2Z0Y29uZG9taW5pb3MuY29tIiwiZXhwIjoxNjI1NTk2MTE1fQ.E1ORab-L8aZ2gQce5jVvqo46EM6TgwYTOzDPTL54BqK0_NBWEND9qktEY1em-i023ORzhJju6_wG46FLvHU52Q",
 								"type": "text"
 							}
 						],
@@ -297,12 +299,14 @@
 							"raw": "{\r\n  \"cpf\": \"148.923.137-42\",\r\n  \"email\": \"machadopnn@gmail.com\",\r\n  \"funcao\": \"Sindico\",\r\n  \"nome\": \"Carlos\",\r\n  \"senha\": \"teste\",\r\n  \"sobrenome\": \"Henrique\"\r\n}"
 						},
 						"url": {
-							"raw": "http://localhost:8080/usuarios/auth",
+							"raw": "http://app.axdeveloper.com.br/usuarios/auth",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"app",
+								"axdeveloper",
+								"com",
+								"br"
 							],
-							"port": "8080",
 							"path": [
 								"usuarios",
 								"auth"
@@ -323,7 +327,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbmRyZUBzb2Z0Y29uZG9taW5pb3MuY29tIiwiZXhwIjoxNjI1NTE1MjczfQ.CD2MWPbelgMW_-QOB9Cqy8ZCaw7pGFxCRxrAMoc3yeaaAQEe5jdUwk43kHW6VndTGcOK0TOEWMEZgcktrRTHEg",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzaW5kaWNvQHNvZnRjb25kb21pbmlvcy5jb20iLCJleHAiOjE2MjU1MzgyMDR9.5Rwtn3p-PI7Lal8NBN7znmF4u7L1ZzWnhpmYRhFd2rWKcCZx2NF-9-KvT304ZQrrc2ruRCqjCPChyb03m8mKOA",
 								"type": "text"
 							},
 							{
@@ -335,15 +339,17 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": " {\r\n            \"cep\": \"24401-004\",\r\n            \"rua\": \"Rua 04\",\r\n            \"numero\": \"3655\",\r\n            \"razaoSocial\": \"Condominio 004\",\r\n            \"nomeFantasia\": \"Condominio 004\",\r\n            \"cnpj\": \"1000021/0004\",\r\n            \"linkContratoSocial\": null,\r\n            \"bairro\": \"paraiba\",\r\n            \"cidade\": \"ceara\",\r\n            \"estado\": \"PB\"\r\n        }"
+							"raw": " {\r\n            \"cep\": \"24401-003\",\r\n            \"rua\": \"Rua 03\",\r\n            \"numero\": \"3655\",\r\n            \"razaoSocial\": \"Condominio 003\",\r\n            \"nomeFantasia\": \"Condominio 003\",\r\n            \"cnpj\": \"1000021/0003\",\r\n            \"linkContratoSocial\": null,\r\n            \"bairro\": \"Ribeirao preto\",\r\n            \"cidade\": \"Sao paulo\",\r\n            \"estado\": \"sp\"\r\n        }"
 						},
 						"url": {
-							"raw": "http://localhost:8080/condominios",
+							"raw": "http://app.axdeveloper.com.br/condominios",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"app",
+								"axdeveloper",
+								"com",
+								"br"
 							],
-							"port": "8080",
 							"path": [
 								"condominios"
 							]
@@ -361,7 +367,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbmRyZUBzb2Z0Y29uZG9taW5pb3MuY29tIiwiZXhwIjoxNjI1NTE1MjczfQ.CD2MWPbelgMW_-QOB9Cqy8ZCaw7pGFxCRxrAMoc3yeaaAQEe5jdUwk43kHW6VndTGcOK0TOEWMEZgcktrRTHEg",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbkBzb2Z0Y29uZG9taW5pb3MuY29tIiwiZXhwIjoxNjI1MDAyOTk3fQ._ZwghsvDNks_CxHaVyml4sBj8qFiKqG_rjArky9N6fs7A2zl0S90aG6KOZK-fYZtEEaMGoERxMbX4xSG3E7ZHw",
 								"type": "text"
 							}
 						],
@@ -370,12 +376,14 @@
 							"raw": "{\r\n  \"cpf\": \"148.923.137-42\",\r\n  \"email\": \"machadopnn@gmail.com\",\r\n  \"funcao\": \"Sindico\",\r\n  \"nome\": \"Carlos\",\r\n  \"senha\": \"teste\",\r\n  \"sobrenome\": \"Henrique\"\r\n}"
 						},
 						"url": {
-							"raw": "http://localhost:8080/condominios",
+							"raw": "http://app.axdeveloper.com.br/condominios",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"app",
+								"axdeveloper",
+								"com",
+								"br"
 							],
-							"port": "8080",
 							"path": [
 								"condominios"
 							]
@@ -395,7 +403,7 @@
 							}
 						],
 						"url": {
-							"raw": "http://app.axdeveloper.com.br/condominios/search?bairro=Trind",
+							"raw": "http://app.axdeveloper.com.br/condominios/search?",
 							"protocol": "http",
 							"host": [
 								"app",
@@ -409,8 +417,8 @@
 							],
 							"query": [
 								{
-									"key": "bairro",
-									"value": "Trind"
+									"key": "",
+									"value": null
 								}
 							]
 						}
@@ -432,12 +440,14 @@
 							"raw": "{\r\n  \"descricao\": \"Zelador\"\r\n \r\n}"
 						},
 						"url": {
-							"raw": "http://localhost:8080/grupos-permissoes",
+							"raw": "http://app.axdeveloper.com.br/grupos-permissoes",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"app",
+								"axdeveloper",
+								"com",
+								"br"
 							],
-							"port": "8080",
 							"path": [
 								"grupos-permissoes"
 							]
@@ -458,12 +468,14 @@
 							"raw": "{\r\n  \"cpf\": \"148.923.137-42\",\r\n  \"email\": \"machadopnn@gmail.com\",\r\n  \"funcao\": \"Sindico\",\r\n  \"nome\": \"Carlos\",\r\n  \"senha\": \"teste\",\r\n  \"sobrenome\": \"Henrique\"\r\n}"
 						},
 						"url": {
-							"raw": "http://localhost:8080/grupos-permissoes",
+							"raw": "http://app.axdeveloper.com.br/grupos-permissoes",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"app",
+								"axdeveloper",
+								"com",
+								"br"
 							],
-							"port": "8080",
 							"path": [
 								"grupos-permissoes"
 							]
@@ -490,15 +502,17 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\":\"Carlos2@gmail.com\",\r\n    \"senha\":\"teste\"\r\n}"
+							"raw": "{\r\n    \"email\":\"sindico@softcondominios.com\",\r\n    \"senha\":\"teste\"\r\n}"
 						},
 						"url": {
-							"raw": "http://localhost:8080/login",
+							"raw": "http://app.axdeveloper.com.br/login",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"app",
+								"axdeveloper",
+								"com",
+								"br"
 							],
-							"port": "8080",
 							"path": [
 								"login"
 							]
@@ -507,6 +521,12 @@
 					"response": []
 				}
 			]
+		}
+	],
+	"variable": [
+		{
+			"key": "heroku",
+			"value": "http://app.axdeveloper.com.br/"
 		}
 	]
 }

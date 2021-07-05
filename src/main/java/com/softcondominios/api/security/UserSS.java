@@ -1,6 +1,8 @@
 package com.softcondominios.api.security;
 
 import java.util.Collection;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -20,11 +22,12 @@ public class UserSS implements UserDetails {
 	public UserSS() {
 	}
 	
-	public UserSS(Long id, String email, String senha) {
+	public UserSS(Long id, String email, String senha, Set<GrupoPermissaoDomain> permissoes) {
 		super();
 		this.id = id;
 		this.email = email;
 		this.senha = senha;
+		this.authorities = permissoes.stream().map(x -> new SimpleGrantedAuthority(x.getDescricao().toUpperCase())).collect(Collectors.toList());
 		
 	}
 
@@ -68,6 +71,6 @@ public class UserSS implements UserDetails {
 	}
 	
 	public boolean hasRole(GrupoPermissaoDomain permissao) {
-		return getAuthorities().contains(new SimpleGrantedAuthority(permissao.getDescricao()));
+		return getAuthorities().contains(new SimpleGrantedAuthority(permissao.getDescricao().toUpperCase()));
 	}
 }

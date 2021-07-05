@@ -65,7 +65,10 @@ public class UserResource {
 		return ResponseEntity.created(uri).build();
 	}
 	
-	
+	@GetMapping("/auth")
+	public ResponseEntity<Object> findAuth(){
+		return ResponseEntity.ok(userService.findUserAuth());
+	}
 	
 	
 //	METODOS PRIVADOS ==================

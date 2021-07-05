@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
@@ -37,6 +38,9 @@ public class ColaboradorService extends ColaboradorServiceSpecifications{
 
 	public ColaboradorDomain findByColaborador() {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		auth.getAuthorities().contains(new SimpleGrantedAuthority("SINDICO"));
+		
+		
 		return colaboradorRepository.findByEmail(auth.getName()).orElseThrow(() -> 
 		new ObjectNotFoundException("Colaborador nao encontrado! email: " + auth.getName() + ", Tipo: " + ColaboradorDomain.class.getName()));
 	}

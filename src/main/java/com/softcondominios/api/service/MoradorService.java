@@ -8,6 +8,8 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +20,7 @@ import com.softcondominios.api.repository.MoradorRepository;
 import com.softcondominios.api.repository.UserRepository;
 import com.softcondominios.api.rest.dto.NewMoradorDto;
 import com.softcondominios.api.service.exceptions.DataIntegrityException;
+import com.softcondominios.api.service.exceptions.ObjectNotFoundException;
 import com.softcondominios.api.service.specifications.MoradorServiceSpecifications;
 
 @Service
@@ -70,6 +73,14 @@ public class MoradorService extends MoradorServiceSpecifications{
 		
 		return userRepository.save(user);
 		
+	}
+	
+	public MoradorDomain findByMorador() {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+			
+		
+		return moradorRepository.findByEmail(auth.getName()).orElseThrow(() -> 
+		new ObjectNotFoundException("Colaborador nao encontrado! email: " + auth.getName() + ", Tipo: " + MoradorDomain.class.getName()));
 	}
 	
 	private String criptografarSenha(String senha) {
