@@ -42,9 +42,9 @@ public class MoradorService extends MoradorServiceSpecifications{
 		return moradorRepository.findAll(pageable);
 	}
 	
-	public Page<MoradorDomain> search(Long condominio, String nome, Pageable pageable){
+	public Page<MoradorDomain> search(Long condominio, String nome, String email, Pageable pageable){
 		
-		return moradorRepository.findAll(search(condominio,nome), pageable);
+		return moradorRepository.findAll(search(condominio,nome, email), pageable);
 	}
 	
 	@Transactional

@@ -8,8 +8,6 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import com.softcondominios.api.domain.BairroDomain;
@@ -55,7 +53,7 @@ public class CondominioService extends CondominioServiceSpecifications{
 		BairroDomain bairro = saveBairro(newCondominioDto.getBairro(), cidade);
 		updateCidade(cidade, bairro);
 		
-		ColaboradorDomain colaborador = findByColaborador();
+		ColaboradorDomain colaborador = colaboradorService.findByColaborador();
 		CondominioDomain condominio = convertDto(newCondominioDto, bairro, colaborador);
 		updateBairro(bairro, condominio);
 		
@@ -87,10 +85,7 @@ public class CondominioService extends CondominioServiceSpecifications{
 		colaboradorService.update(colaborador);
 	}
 	
-	private ColaboradorDomain findByColaborador() {
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		return colaboradorService.findByEmail(auth.getName());
-	}
+	
 	
 	public Page<CondominioDomain> search(String bairro, String cidade, String estado, String razaoSocial, Pageable pageable) {
 		

@@ -53,11 +53,12 @@ public class MoradorResource {
 	@ApiOperation("Pesquisa dinamica por moradores")
 	@GetMapping("/search")
 	public ResponseEntity<Page<ViewMoradorDto>> findBySearch(@RequestParam(required = false) String nome, 
-															 @RequestParam(required = false) Long condominio, 
+															 @RequestParam(required = false) Long condominio,
+															 @RequestParam(required = false) String email,
 															 Pageable pageable){
 			
 		
-		Page<ViewMoradorDto> moradorDto = convertDto(moradorService.search(condominio, nome, pageable).getContent());
+		Page<ViewMoradorDto> moradorDto = convertDto(moradorService.search(condominio, nome, email, pageable).getContent());
 		return ResponseEntity.ok(moradorDto); 
 	
 	}

@@ -9,25 +9,15 @@ import javax.persistence.criteria.Predicate;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.util.StringUtils;
 
-import com.softcondominios.api.domain.CondominioDomain;
-import com.softcondominios.api.domain.MoradorDomain;
+import com.softcondominios.api.domain.ColaboradorDomain;
 
-public class MoradorServiceSpecifications {
+public class ColaboradorServiceSpecifications {
 	
-	public Specification<MoradorDomain> search(Long condominio, String nome, String email) {
+	public Specification<ColaboradorDomain> searchBy(String email) {
 		
 		return (root, query, builder) -> {
 			List<Predicate> predicados = new ArrayList<>();
-			if(StringUtils.hasText(nome)) {
-				Path<String> campo = root.get("nome");
-				Predicate predicado = builder.like(campo, "%"+nome+"%");
-				predicados.add(predicado);
-			}
-			if(condominio != null) {
-				Path<CondominioDomain> condominioCampo = root.get("condominio");
-				Predicate predicado = builder.equal(condominioCampo, condominio);
-				predicados.add(predicado);
-			}
+			
 			if(StringUtils.hasText(email)) {
 				Path<String> campo = root.get("email");
 				Predicate predicado = builder.equal(campo, email);
@@ -36,4 +26,6 @@ public class MoradorServiceSpecifications {
 			return builder.and(predicados.toArray(new Predicate[0]));
 		};
 	}
+	
+	
 }
