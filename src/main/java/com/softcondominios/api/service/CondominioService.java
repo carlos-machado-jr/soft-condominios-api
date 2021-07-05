@@ -94,7 +94,7 @@ public class CondominioService extends CondominioServiceSpecifications{
 	
 	public Page<CondominioDomain> search(String bairro, String cidade, String estado, String razaoSocial, Pageable pageable) {
 		
-		return condominioRepository.findAll(search(bairro.toLowerCase(), cidade.toLowerCase(), estado.toLowerCase(), razaoSocial.toLowerCase()), pageable);
+		return condominioRepository.findAll(search(bairro, cidade, estado, razaoSocial), pageable);
 	}
 	
 
