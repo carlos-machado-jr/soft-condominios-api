@@ -15,6 +15,7 @@ public class ViewEncomendasDto {
 	private String dataEntrega;
 	private String horaEntrega;
 	private String status;
+	private String autor;
 	private ViewMoradorDto morador;
 	
 	public ViewEncomendasDto() {
@@ -37,6 +38,7 @@ public class ViewEncomendasDto {
 		this.horaEntrega = datetimeEntrega != null ? datetimeEntrega[1] : null;
 		this.status = encomenda.isStatus() ? "Entregue" : "Não entregue";
 		this.morador = new ViewMoradorDto(encomenda.getMorador());
+		this.autor = encomenda.getAutor();
 	}
 
 	
@@ -86,6 +88,15 @@ public class ViewEncomendasDto {
 
 	public void setStatus(String status) {
 		this.status = status;
+	}
+
+	
+	public String getAutor() {
+		return autor;
+	}
+
+	public void setAutor(String autor) {
+		this.autor = autor;
 	}
 
 	public ViewMoradorDto getMorador() {

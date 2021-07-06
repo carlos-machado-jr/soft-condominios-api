@@ -10,6 +10,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import com.softcondominios.api.domain.ColaboradorDomain;
 import com.softcondominios.api.domain.EncomendaDomain;
 import com.softcondominios.api.domain.MoradorDomain;
 import com.softcondominios.api.repository.EncomendaRepository;
@@ -25,6 +26,9 @@ public class EncomendaService extends EncomendaServiceEspecifications{
 	@Autowired
 	private MoradorService moradorService;
 	
+	@Autowired
+	private ColaboradorService colaboradorService;
+	
 	public Page<EncomendaDomain> findAll(Pageable pageable){
 		return encomendaRepository.findAll(pageable);
 	}
@@ -35,8 +39,10 @@ public class EncomendaService extends EncomendaServiceEspecifications{
 	}
 	
 	public EncomendaDomain save(NewEncomendasDto newEncomendas) {
+		ColaboradorDomain colaborador = colaboradorService.findByColaborador();
+		String autor = colaborador.getNome() + " " + colaborador.getSobrenome();
 		MoradorDomain morador = moradorService.findById(newEncomendas.getDestinatario());
-		EncomendaDomain encomendas = new EncomendaDomain(newEncomendas, morador);
+		EncomendaDomain encomendas = new EncomendaDomain(newEncomendas, morador, autor);
 		
 		return encomendaRepository.save(encomendas);
 	}

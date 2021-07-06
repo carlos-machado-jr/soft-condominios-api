@@ -52,6 +52,9 @@ public class EncomendaDomain implements Serializable {
 	@Column(columnDefinition = "DATETIME")
 	private String dataEntrega;
 	
+	@Column(columnDefinition = "varchar(50)", nullable = false)
+	private String autor;
+	
 	@Column(columnDefinition = "tinyint", nullable = false)
 	private boolean status;
 	
@@ -65,7 +68,7 @@ public class EncomendaDomain implements Serializable {
 	}
 
 	
-	public EncomendaDomain(NewEncomendasDto newEncomendas, MoradorDomain morador) {
+	public EncomendaDomain(NewEncomendasDto newEncomendas, MoradorDomain morador, String autor) {
 		super();
 		this.id = null;
 		this.descricao = newEncomendas.getDescricao();
@@ -78,6 +81,7 @@ public class EncomendaDomain implements Serializable {
 		this.dataCriacao = date.format(now);
 		this.status = false;
 		this.morador = morador;
+		this.autor = autor;
 	}
 
 	
@@ -106,6 +110,17 @@ public class EncomendaDomain implements Serializable {
 
 	public String getDestinatario() {
 		return destinatario;
+	}
+
+	
+
+	public String getAutor() {
+		return autor;
+	}
+
+
+	public void setAutor(String autor) {
+		this.autor = autor;
 	}
 
 
