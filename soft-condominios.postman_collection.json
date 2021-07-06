@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "919e62d3-7f78-46e2-b717-42f5d9d5a65a",
+		"_postman_id": "09379087-8462-4f93-9594-16b224ac21af",
 		"name": "soft-condominios",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -125,21 +125,19 @@
 							"raw": "{\r\n  \"cpf\": \"011.052.005-00\",\r\n  \"email\": \"carlosjose@gmail.com\",\r\n  \"apartamento\": \"110\",\r\n  \"bloco\":\"A\",\r\n  \"nome\": \"jose\",\r\n  \"senha\": \"teste\",\r\n  \"sobrenome\": \"Henrique\"\r\n}"
 						},
 						"url": {
-							"raw": "http://app.axdeveloper.com.br/moradores?condominioId=35",
+							"raw": "http://localhost:8080/moradores?condominioId=1",
 							"protocol": "http",
 							"host": [
-								"app",
-								"axdeveloper",
-								"com",
-								"br"
+								"localhost"
 							],
+							"port": "8080",
 							"path": [
 								"moradores"
 							],
 							"query": [
 								{
 									"key": "condominioId",
-									"value": "35"
+									"value": "1"
 								}
 							]
 						}
@@ -323,7 +321,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbmRyZUBzb2Z0Y29uZG9taW5pb3MuY29tIiwiZXhwIjoxNjI1NTE1MjczfQ.CD2MWPbelgMW_-QOB9Cqy8ZCaw7pGFxCRxrAMoc3yeaaAQEe5jdUwk43kHW6VndTGcOK0TOEWMEZgcktrRTHEg",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzaW5kaWNvQHNvZnRjb25kb21pbmlvcy5jb20iLCJleHAiOjE2MjU2MTExOTd9.Do8JpjQCs3ukVCYUo_OdIrUsSThU9OioDcWfXzF34vm_LXro75WnVpEx7XRgnlWrUH2CaVuhVBPqFvoo3MbqGg",
 								"type": "text"
 							},
 							{
@@ -335,7 +333,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": " {\r\n            \"cep\": \"24401-004\",\r\n            \"rua\": \"Rua 04\",\r\n            \"numero\": \"3655\",\r\n            \"razaoSocial\": \"Condominio 004\",\r\n            \"nomeFantasia\": \"Condominio 004\",\r\n            \"cnpj\": \"1000021/0004\",\r\n            \"linkContratoSocial\": null,\r\n            \"bairro\": \"paraiba\",\r\n            \"cidade\": \"ceara\",\r\n            \"estado\": \"PB\"\r\n        }"
+							"raw": " {\r\n            \"cep\": \"00000-001\",\r\n            \"rua\": \"Rua 01\",\r\n            \"numero\": \"0001\",\r\n            \"razaoSocial\": \"Condominio 001\",\r\n            \"nomeFantasia\": \"Condominio 001\",\r\n            \"cnpj\": \"000000/0001\",\r\n            \"linkContratoSocial\": null,\r\n            \"bairro\": \"trindade\",\r\n            \"cidade\": \"são gonçalo\",\r\n            \"estado\": \"RJ\"\r\n        }"
 						},
 						"url": {
 							"raw": "http://localhost:8080/condominios",
@@ -394,6 +392,10 @@
 								"type": "text"
 							}
 						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
 							"raw": "http://app.axdeveloper.com.br/condominios/search?bairro=Trind",
 							"protocol": "http",
@@ -474,6 +476,78 @@
 			]
 		},
 		{
+			"name": "encomendas",
+			"item": [
+				{
+					"name": "cadastrar encomendas (necessario autenticacao como admin)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJjYXJsb3Nqb3NlQGdtYWlsLmNvbSIsImV4cCI6MTYyNTYxMTQyMX0.dMePsun3tMCxofZN1W32JsaJuuyf_CprEyAfvgSupvaA4U4f1iZhCN2xkH33lt1DUy4fiW3zQEOICdWX_eVD6A",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"descricao\": \"PS4 2\",\r\n  \"destinatario\" : \"Patrick \"\r\n \r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/encomendas",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"encomendas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "buscar encomendas",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJjYXJsb3Nqb3NlQGdtYWlsLmNvbSIsImV4cCI6MTYyNTYxMTQyMX0.dMePsun3tMCxofZN1W32JsaJuuyf_CprEyAfvgSupvaA4U4f1iZhCN2xkH33lt1DUy4fiW3zQEOICdWX_eVD6A",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"cpf\": \"148.923.137-42\",\r\n  \"email\": \"machadopnn@gmail.com\",\r\n  \"funcao\": \"Sindico\",\r\n  \"nome\": \"Carlos\",\r\n  \"senha\": \"teste\",\r\n  \"sobrenome\": \"Henrique\"\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/encomendas",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"encomendas"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "login",
 			"item": [
 				{
@@ -490,7 +564,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\":\"Carlos2@gmail.com\",\r\n    \"senha\":\"teste\"\r\n}"
+							"raw": "{\r\n    \"email\":\"carlosjose@gmail.com\",\r\n    \"senha\":\"teste\"\r\n}"
 						},
 						"url": {
 							"raw": "http://localhost:8080/login",
