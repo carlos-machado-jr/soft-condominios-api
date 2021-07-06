@@ -1,5 +1,8 @@
 package com.softcondominios.api.service;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -9,6 +12,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import com.softcondominios.api.domain.ColaboradorDomain;
+import com.softcondominios.api.domain.CondominioDomain;
 import com.softcondominios.api.repository.ColaboradorRepository;
 import com.softcondominios.api.rest.dto.NewColaboradorDto;
 import com.softcondominios.api.service.exceptions.ObjectNotFoundException;
@@ -23,6 +27,8 @@ public class ColaboradorService extends ColaboradorServiceSpecifications{
 	@Autowired
 	private UserService userService;
 	
+	@Autowired
+	private CondominioService condominioService;
 	
 	public Page<ColaboradorDomain> findAll(Pageable pageable){
 		
@@ -45,9 +51,22 @@ public class ColaboradorService extends ColaboradorServiceSpecifications{
 		new ObjectNotFoundException("Colaborador nao encontrado! email: " + auth.getName() + ", Tipo: " + ColaboradorDomain.class.getName()));
 	}
 	
-	public ColaboradorDomain save(NewColaboradorDto newColaborador) {
-		return colaboradorRepository.save(convertToDomain(newColaborador));
+	public ColaboradorDomain saveSindico(NewColaboradorDto newColaborador) {
+		ColaboradorDomain colaborador = convertToDomain(newColaborador);
+		colaborador.setFuncao("Sindico");
+		colaborador.setUsuario(userService.save(newColaborador));
+		return colaboradorRepository.save(colaborador);
 	}
+	
+	public ColaboradorDomain saveFuncionarios(NewColaboradorDto newColaborador) {
+		
+		ColaboradorDomain colaborador = convertToDomain(newColaborador);
+		CondominioDomain condominio = condominioService.findById(newColaborador.getCondominio());
+		colaborador.setCondominio(convertByHashSet(condominio));
+		colaborador.setUsuario(userService.save(newColaborador));
+		return colaboradorRepository.save(colaborador);
+	}
+	
 	
 	public ColaboradorDomain update(ColaboradorDomain colaboradorDomain) {
 		return colaboradorRepository.save(colaboradorDomain);
@@ -56,10 +75,15 @@ public class ColaboradorService extends ColaboradorServiceSpecifications{
 
 	private ColaboradorDomain convertToDomain(NewColaboradorDto newColaborador) {
 		ColaboradorDomain colaborador = new ColaboradorDomain(newColaborador);
-		colaborador.setUsuario(userService.save(newColaborador));
+		
 		return colaborador;
 	}
 
+	private Set<CondominioDomain> convertByHashSet(CondominioDomain condominio){
+		Set<CondominioDomain> condominioSet = new HashSet<CondominioDomain>();
+		condominioSet.add(condominio);
+		return condominioSet;
+	}
 
 	
 }

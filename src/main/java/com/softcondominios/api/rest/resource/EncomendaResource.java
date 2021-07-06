@@ -33,14 +33,18 @@ public class EncomendaResource {
 	@Autowired
 	private EncomendaService encomendaService;
 	
+	@ApiOperation("buscar todas as encomendas")
 	@GetMapping
 	public ResponseEntity<Page<ViewEncomendasDto>> findAll(Pageable pageable){
 		return ResponseEntity.ok(convertDto(encomendaService.findAll(pageable).getContent()));
 	}
 	
+	@ApiOperation("Busca dinamica")
 	@GetMapping("/search")
-	public ResponseEntity<Page<ViewEncomendasDto>> findAll(@RequestParam(required = false) Boolean status, Pageable pageable){
-		return ResponseEntity.ok(convertDto(encomendaService.search(status, pageable).getContent()));
+	public ResponseEntity<Page<ViewEncomendasDto>> findAll(@RequestParam(required = false) Boolean status,
+														   @RequestParam(required = false) Long condominio,			
+												           Pageable pageable){
+		return ResponseEntity.ok(convertDto(encomendaService.search(status, condominio, pageable).getContent()));
 	}
 	
 	

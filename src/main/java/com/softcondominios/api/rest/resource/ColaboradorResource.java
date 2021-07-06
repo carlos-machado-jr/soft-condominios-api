@@ -57,16 +57,27 @@ public class ColaboradorResource {
 	
 	}
 	
-	@ApiOperation("Cria colaboradores")
+	@ApiOperation("Cria Sindicos")
 	@PostMapping
 	public ResponseEntity<NewColaboradorDto> save(@RequestBody NewColaboradorDto colaborador){
 		
-		ColaboradorDomain colaboradorDomain = colaboradorService.save(colaborador);
+		ColaboradorDomain colaboradorDomain = colaboradorService.saveSindico(colaborador);
 	
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(colaboradorDomain.getId()).toUri();
 		return ResponseEntity.created(uri).build();
 	}
 	
+	@ApiOperation("Cria Funcionarios")
+	@PostMapping("/funcionarios")
+	public ResponseEntity<NewColaboradorDto> saveFuncionarios(@RequestBody NewColaboradorDto colaborador){
+		
+		ColaboradorDomain colaboradorDomain = colaboradorService.saveFuncionarios(colaborador);
+	
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(colaboradorDomain.getId()).toUri();
+		return ResponseEntity.created(uri).build();
+	}
+	
+	@ApiOperation("Retorna colaborador autenticado")
 	@GetMapping("/auth")
 	public ResponseEntity<ViewColaboradorDto> findByColaborador(){
 		 

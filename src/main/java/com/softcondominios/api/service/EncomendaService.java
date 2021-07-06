@@ -3,6 +3,8 @@ package com.softcondominios.api.service;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -27,8 +29,9 @@ public class EncomendaService extends EncomendaServiceEspecifications{
 		return encomendaRepository.findAll(pageable);
 	}
 	
-	public Page<EncomendaDomain> search(Boolean status, Pageable pageable){
-		return encomendaRepository.findAll(searchBy(status), pageable);
+	@Transactional
+	public Page<EncomendaDomain> search(Boolean status, Long condominio, Pageable pageable){
+		return encomendaRepository.findAll(searchBy(status, condominio), pageable);
 	}
 	
 	public EncomendaDomain save(NewEncomendasDto newEncomendas) {

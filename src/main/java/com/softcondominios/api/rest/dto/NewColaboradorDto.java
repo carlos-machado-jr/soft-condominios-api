@@ -11,6 +11,7 @@ public class NewColaboradorDto {
 	private String senha;
 	private String linkFoto;
 	private String funcao;
+	private Long condominio;
 	
 	public NewColaboradorDto() {
 		// TODO Auto-generated constructor stub
@@ -90,6 +91,17 @@ public class NewColaboradorDto {
 	public void setLinkFoto(String linkFoto) {
 		this.linkFoto = linkFoto;
 	}
+
+
+	public Long getCondominio() {
+		return condominio;
+	}
+
+
+	public void setCondominio(Long condominio) {
+		this.condominio = condominio;
+	}
+	
 	
 	
 	
