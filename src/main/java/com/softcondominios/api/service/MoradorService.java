@@ -1,6 +1,7 @@
 package com.softcondominios.api.service;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.transaction.Transactional;
@@ -47,7 +48,12 @@ public class MoradorService extends MoradorServiceSpecifications{
 	
 	public Page<MoradorDomain> search(Long condominio, String nome, String email, Pageable pageable){
 		
-		return moradorRepository.findAll(search(condominio,nome, email), pageable);
+		return moradorRepository.findAll(searchBy(condominio,nome, email), pageable);
+	}
+	
+	public List<MoradorDomain> search(String nomeCompleto){
+		
+		return moradorRepository.findAll(searchBy(nomeCompleto));
 	}
 	
 	@Transactional

@@ -63,6 +63,14 @@ public class MoradorResource {
 	
 	}
 	
+	@GetMapping("/searchByNome")
+	public ResponseEntity<List<ViewMoradorDto>> findBySearchNome(@RequestParam(required = false) String nome){
+			
+		
+		List<ViewMoradorDto> moradorDto = convertDtoList(moradorService.search(nome));
+		return ResponseEntity.ok(moradorDto); 
+	
+	}
 	
 	@ApiOperation("Cria moradores")
 	@PostMapping
@@ -80,9 +88,9 @@ public class MoradorResource {
 		return new PageImpl<>(morador.stream().map(c -> new ViewMoradorDto(c)).collect(Collectors.toList())); 
 	}
 	
-//	private List<ViewMoradorDto> convertDtoList(List<MoradorDomain> morador) {
-//		return morador.stream().map(c -> new ViewMoradorDto(c)).collect(Collectors.toList()); 
-//	}
+	private List<ViewMoradorDto> convertDtoList(List<MoradorDomain> morador) {
+		return morador.stream().map(c -> new ViewMoradorDto(c)).collect(Collectors.toList()); 
+	}
 	
 	@Transactional
 	private ObjectNotFoundException objectNotFoundException(String message) {

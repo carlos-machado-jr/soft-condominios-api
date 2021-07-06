@@ -4,6 +4,9 @@ public class NewEncomendasDto {
 	
 	private String descricao;
 	private String destinatario;
+	private String apartamento;
+	private String bloco;
+	
 	
 	
 	public NewEncomendasDto() {
