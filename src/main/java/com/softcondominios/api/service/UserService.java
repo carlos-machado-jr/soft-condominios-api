@@ -89,15 +89,7 @@ public class UserService {
 	private Set<GrupoPermissaoDomain> findGruposByDescricao(String descricao) {
 		
 		return convertByHashSet(grupoPermissaoService.findByDescricao(descricao));
-<<<<<<< HEAD
-	}
-	
-	private Set<GrupoPermissaoDomain> convertByHashSet(GrupoPermissaoDomain grupoPermissaoDomain){
-		Set<GrupoPermissaoDomain> permissao = new HashSet<GrupoPermissaoDomain>();
-		permissao.add(grupoPermissaoDomain);
-		return permissao;
-=======
->>>>>>> a2fad94efe264098860b703d7865ca32d02ae36e
+
 	}
 	
 	private Set<GrupoPermissaoDomain> convertByHashSet(GrupoPermissaoDomain grupoPermissaoDomain){
