@@ -3,7 +3,7 @@ package com.softcondominios.api.rest.dto;
 public class NewEncomendasDto {
 	
 	private String descricao;
-	private String destinatario;
+	private Long destinatario;
 	private String apartamento;
 	private String bloco;
 	
@@ -15,11 +15,7 @@ public class NewEncomendasDto {
 	
 	
 
-	public NewEncomendasDto(String descricao, String destinatario) {
-		super();
-		this.descricao = descricao;
-		this.destinatario = destinatario;
-	}
+
 
 
 
@@ -33,13 +29,53 @@ public class NewEncomendasDto {
 	}
 
 
-	public String getDestinatario() {
+	public Long getDestinatario() {
 		return destinatario;
 	}
 
 
-	public void setDestinatario(String destinatario) {
+	public void setDestinatario(Long destinatario) {
 		this.destinatario = destinatario;
+	}
+
+
+
+
+
+
+
+	public String getApartamento() {
+		return apartamento;
+	}
+
+
+
+
+
+
+
+	public void setApartamento(String apartamento) {
+		this.apartamento = apartamento;
+	}
+
+
+
+
+
+
+
+	public String getBloco() {
+		return bloco;
+	}
+
+
+
+
+
+
+
+	public void setBloco(String bloco) {
+		this.bloco = bloco;
 	}
 	
 	

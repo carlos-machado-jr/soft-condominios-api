@@ -10,9 +10,10 @@ import com.softcondominios.api.domain.MoradorDomain;
 import com.softcondominios.api.repository.EncomendaRepository;
 import com.softcondominios.api.rest.dto.NewEncomendasDto;
 import com.softcondominios.api.service.exceptions.ObjectNotFoundException;
+import com.softcondominios.api.service.specifications.EncomendaServiceEspecifications;
 
 @Service
-public class EncomendaService {
+public class EncomendaService extends EncomendaServiceEspecifications{
 	@Autowired
 	private EncomendaRepository encomendaRepository;
 	
@@ -23,8 +24,12 @@ public class EncomendaService {
 		return encomendaRepository.findAll(pageable);
 	}
 	
+	public Page<EncomendaDomain> search(Boolean status, Pageable pageable){
+		return encomendaRepository.findAll(searchBy(status), pageable);
+	}
+	
 	public EncomendaDomain save(NewEncomendasDto newEncomendas) {
-		MoradorDomain morador = moradorService.findByMorador();
+		MoradorDomain morador = moradorService.findById(newEncomendas.getDestinatario());
 		EncomendaDomain encomendas = new EncomendaDomain(newEncomendas, morador);
 		
 		return encomendaRepository.save(encomendas);

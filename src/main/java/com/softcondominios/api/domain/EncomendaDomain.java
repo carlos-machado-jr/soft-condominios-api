@@ -64,14 +64,14 @@ public class EncomendaDomain implements Serializable {
 		super();
 		this.id = null;
 		this.descricao = newEncomendas.getDescricao();
-		this.destinatario = newEncomendas.getDestinatario();
+		this.destinatario = morador.getNome() + " " + morador.getSobrenome();
 		this.bloco = morador.getBloco();
 		this.apartamento = morador.getApartamento();
 		SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		Date now = new Date();
 //		this.dataCriacao = date.format(now);
 		this.dataCriacao = date.format(now);
-		this.status = true;
+		this.status = false;
 		this.morador = morador;
 	}
 

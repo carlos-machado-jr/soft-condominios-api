@@ -55,6 +55,10 @@ public class MoradorService extends MoradorServiceSpecifications{
 		
 		return moradorRepository.findAll(searchBy(nomeCompleto));
 	}
+	public MoradorDomain findById(Long id) {
+		return moradorRepository.findById(id).orElseThrow(() -> 
+								new ObjectNotFoundException("Morador nao encontrado! Id: " + id + ", Tipo: " + MoradorDomain.class.getName()));
+	}
 	
 	@Transactional
 	public MoradorDomain save( NewMoradorDto newMoradorDto, Long id) {

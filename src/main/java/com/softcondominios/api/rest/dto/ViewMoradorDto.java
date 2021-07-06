@@ -4,6 +4,7 @@ import com.softcondominios.api.domain.CondominioDomain;
 import com.softcondominios.api.domain.MoradorDomain;
 
 public class ViewMoradorDto {
+	private Long id;
 	private String nome;
 	private String sobrenome;
 	private String email;
@@ -17,6 +18,7 @@ public class ViewMoradorDto {
 	}
 	
 	public ViewMoradorDto(MoradorDomain morador) {
+		this.id = morador.getId();
 		this.nome = morador.getNome();
 		this.sobrenome = morador.getSobrenome();
 		this.email = morador.getEmail();
@@ -29,6 +31,16 @@ public class ViewMoradorDto {
 	private ViewCondominioDto convertDto(CondominioDomain c) {
 		return new ViewCondominioDto(c);
 		 
+	}
+	
+	
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String getNome() {

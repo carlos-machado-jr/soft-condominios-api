@@ -22,7 +22,7 @@ public class ViewEncomendasDto {
 		String[] datetime =  encomenda.getDataCriacao().split(" ");
 		this.data =datetime[0];
 		this.hora = datetime[1];
-		this.status = encomenda.isStatus() ? "Não entregue" : "Entregue";
+		this.status = encomenda.isStatus() ? "Entregue" : "Não entregue";
 		this.morador = new ViewMoradorDto(encomenda.getMorador());
 	}
 

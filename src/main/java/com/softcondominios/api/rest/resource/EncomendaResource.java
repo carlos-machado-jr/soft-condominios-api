@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -36,6 +37,12 @@ public class EncomendaResource {
 	public ResponseEntity<Page<ViewEncomendasDto>> findAll(Pageable pageable){
 		return ResponseEntity.ok(convertDto(encomendaService.findAll(pageable).getContent()));
 	}
+	
+	@GetMapping("/search")
+	public ResponseEntity<Page<ViewEncomendasDto>> findAll(@RequestParam(required = false) Boolean status, Pageable pageable){
+		return ResponseEntity.ok(convertDto(encomendaService.search(status, pageable).getContent()));
+	}
+	
 	
 	
 	@ApiOperation("Cria uma encomenda")
