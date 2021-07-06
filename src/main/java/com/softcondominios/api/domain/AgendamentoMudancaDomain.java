@@ -1,7 +1,6 @@
 package com.softcondominios.api.domain;
 
 import java.io.Serializable;
-import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import com.softcondominios.api.rest.dto.NewAgendamentoMudancaDto;
 
 @Entity
 @Table(name = "tb_agendamento_mudanca")
@@ -26,7 +27,7 @@ public class AgendamentoMudancaDomain implements Serializable {
 	private Long id;
 	
 	@Column(columnDefinition = "datetime", nullable = false)
-	private Date dataHora;
+	private String dataHora;
 	
 	@Column(columnDefinition = "varchar(250)", nullable = false)
 	private String observacao;
@@ -42,6 +43,18 @@ public class AgendamentoMudancaDomain implements Serializable {
 	public AgendamentoMudancaDomain() {
 		// TODO Auto-generated constructor stub
 	}
+	
+
+
+	public AgendamentoMudancaDomain(NewAgendamentoMudancaDto agendamentoDto, MoradorDomain morador) {
+		super();
+		this.id = null;
+		this.dataHora = agendamentoDto.getData() + " " + agendamentoDto.getHora();
+		this.observacao = agendamentoDto.getObservacao();
+		this.status = true;
+		this.morador = morador;
+	}
+
 
 
 	public Long getId() {
@@ -54,12 +67,12 @@ public class AgendamentoMudancaDomain implements Serializable {
 	}
 
 
-	public Date getDataHora() {
+	public String getDataHora() {
 		return dataHora;
 	}
 
 
-	public void setDataHora(Date dataHora) {
+	public void setDataHora(String dataHora) {
 		this.dataHora = dataHora;
 	}
 
