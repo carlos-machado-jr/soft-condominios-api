@@ -46,6 +46,11 @@ public class EncomendaDomain implements Serializable {
 	@Column(columnDefinition = "DATETIME", nullable = false)
 	private String dataCriacao;
 	
+	@Column(columnDefinition = "DATETIME")
+	private String dataModificacao;
+	
+	@Column(columnDefinition = "DATETIME")
+	private String dataEntrega;
 	
 	@Column(columnDefinition = "tinyint", nullable = false)
 	private boolean status;
@@ -74,6 +79,9 @@ public class EncomendaDomain implements Serializable {
 		this.status = false;
 		this.morador = morador;
 	}
+
+	
+
 
 
 	public Long getId() {
@@ -133,6 +141,27 @@ public class EncomendaDomain implements Serializable {
 
 	public void setDataCriacao(String dataCriacao) {
 		this.dataCriacao = dataCriacao;
+	}
+
+	
+
+	public String getDataModificacao() {
+		return dataModificacao;
+	}
+
+
+	public void setDataModificacao(String dataModificacao) {
+		this.dataModificacao = dataModificacao;
+	}
+
+
+	public String getDataEntrega() {
+		return dataEntrega;
+	}
+
+
+	public void setDataEntrega(String dataEntrega) {
+		this.dataEntrega = dataEntrega;
 	}
 
 

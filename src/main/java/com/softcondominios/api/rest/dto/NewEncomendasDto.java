@@ -4,8 +4,7 @@ public class NewEncomendasDto {
 	
 	private String descricao;
 	private Long destinatario;
-	private String apartamento;
-	private String bloco;
+	private Boolean status;
 	
 	
 	
@@ -44,8 +43,14 @@ public class NewEncomendasDto {
 
 
 
-	public String getApartamento() {
-		return apartamento;
+
+
+
+
+
+
+	public Boolean getStatus() {
+		return status;
 	}
 
 
@@ -54,29 +59,10 @@ public class NewEncomendasDto {
 
 
 
-	public void setApartamento(String apartamento) {
-		this.apartamento = apartamento;
+	public void setStatus(Boolean status) {
+		this.status = status;
 	}
-
-
-
-
-
-
-
-	public String getBloco() {
-		return bloco;
-	}
-
-
-
-
-
-
-
-	public void setBloco(String bloco) {
-		this.bloco = bloco;
-	}
+	
 	
 	
 	

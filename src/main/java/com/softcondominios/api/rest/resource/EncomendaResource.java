@@ -58,10 +58,9 @@ public class EncomendaResource {
 	
 	@ApiOperation("Atualiza uma encomenda")
 	@PutMapping("/{id}")
-	public ResponseEntity<EncomendaDomain> update(@PathVariable Long id, @RequestBody EncomendaDomain encomendaDomain){
+	public ResponseEntity<EncomendaDomain> update(@PathVariable Long id, @RequestBody NewEncomendasDto newEncomendaDto){
 		
-		encomendaDomain.setId(id);
-		encomendaService.update(encomendaDomain);
+		encomendaService.update(newEncomendaDto, id);
 		return ResponseEntity.noContent().build();
 		
 	}
