@@ -2,6 +2,7 @@ package com.softcondominios.api.domain;
 
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -13,6 +14,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+
+import com.softcondominios.api.rest.dto.NewEncomendasDto;
 
 @Entity
 @Table(name = "tb_encomenda")
@@ -40,8 +43,8 @@ public class EncomendaDomain implements Serializable {
 	@Column(columnDefinition = "varchar(20)", nullable = false)
 	private String apartamento;
 	
-	@Column(columnDefinition = "datetime", nullable = false)
-	private Date dataEntrega;
+	@Column(columnDefinition = "DATETIME", nullable = false)
+	private String dataCriacao;
 	
 	
 	@Column(columnDefinition = "tinyint", nullable = false)
@@ -54,6 +57,22 @@ public class EncomendaDomain implements Serializable {
 	
 	public EncomendaDomain() {
 		// TODO Auto-generated constructor stub
+	}
+
+	
+	public EncomendaDomain(NewEncomendasDto newEncomendas, MoradorDomain morador) {
+		super();
+		this.id = null;
+		this.descricao = newEncomendas.getDescricao();
+		this.destinatario = newEncomendas.getDestinatario();
+		this.bloco = morador.getBloco();
+		this.apartamento = morador.getApartamento();
+		SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		Date now = new Date();
+//		this.dataCriacao = date.format(now);
+		this.dataCriacao = date.format(now);
+		this.status = true;
+		this.morador = morador;
 	}
 
 
@@ -107,13 +126,13 @@ public class EncomendaDomain implements Serializable {
 	}
 
 
-	public Date getDataEntrega() {
-		return dataEntrega;
+	public String getDataCriacao() {
+		return dataCriacao;
 	}
 
 
-	public void setDataEntrega(Date dataEntrega) {
-		this.dataEntrega = dataEntrega;
+	public void setDataCriacao(String dataCriacao) {
+		this.dataCriacao = dataCriacao;
 	}
 
 

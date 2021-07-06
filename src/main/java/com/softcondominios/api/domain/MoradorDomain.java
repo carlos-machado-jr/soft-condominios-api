@@ -16,6 +16,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.softcondominios.api.rest.dto.NewMoradorDto;
 
 @Entity
@@ -65,20 +66,24 @@ public class MoradorDomain implements Serializable {
 //	chaves estrangeiras --------||||||><><><__-_
 //	chaves estrangeiras --------||||||><><><__-_
 	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "mor_con_id")
 	private CondominioDomain condominio;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "morador")
 	private Set<OcorrenciaDomain> ocorrencia = new HashSet<>();
 	
-
+	@JsonIgnore
 	@OneToMany(mappedBy = "morador")
 	private Set<EncomendaDomain> encomenda = new HashSet<>();
 	
+	@JsonIgnore
 	@OneToOne
 	@JoinColumn(name = "mor_userId", referencedColumnName = "id")
 	private UserDomain usuario;
+	
 	
 	@OneToMany(mappedBy = "morador")
 	private Set<AgendamentoMudancaDomain> agendamentoMudanca = new HashSet<>();
