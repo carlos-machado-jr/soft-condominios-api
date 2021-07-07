@@ -1,6 +1,12 @@
 package com.softcondominios.api.service;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 import javax.transaction.Transactional;
 
@@ -29,6 +35,28 @@ public class AgendamentoMudancaService extends AgendamentoMudancaServiceSpecific
 		return agendamentoMudancaRepository.findAll(pageable);
 	}
 	
+	public List<String> buscarHoraDisponivel(String data) throws ParseException{
+		
+		List<String> horas = List.of("09:00:00", "11:00:00", "13:00:00", "15:00:00", "17:00:00");
+		List<AgendamentoMudancaDomain> agendamento = agendamentoMudancaRepository.findAll(searchByData(data));
+		
+		horas = eFimDeSemana(data) ? List.of("09:00:00", "11:00:00", "13:00:00") : horas;
+		
+		if(Objects.nonNull(agendamento)) {
+			for(Iterator<AgendamentoMudancaDomain> iterator = agendamento.iterator(); iterator.hasNext();) {
+				
+				AgendamentoMudancaDomain a = (AgendamentoMudancaDomain) iterator.next();
+				String[] datetime = a.getDataHora().split(" ");
+				String horaAgendamento = datetime[1];
+				horas = horas.stream().filter(x -> !x.contains(horaAgendamento)).collect(Collectors.toList());
+			}
+			
+			
+		}
+		
+		return horas;
+	}
+	
 	public Page<AgendamentoMudancaDomain> search(Boolean status, Long condominio, Pageable pageable){
 		return agendamentoMudancaRepository.findAll( searchBy(status, condominio) , pageable);
 	}
@@ -37,6 +65,8 @@ public class AgendamentoMudancaService extends AgendamentoMudancaServiceSpecific
 	@Transactional
 	public AgendamentoMudancaDomain save(NewAgendamentoMudancaDto agendamentoMudancaDto) {
 		MoradorDomain morador = moradorService.findByMorador();
+		String data = agendamentoMudancaDto.getData();
+		String hora = agendamentoMudancaDto.getHora();
 		
 		
 		AgendamentoMudancaDomain agendamento = new AgendamentoMudancaDomain(agendamentoMudancaDto, morador);
@@ -44,11 +74,36 @@ public class AgendamentoMudancaService extends AgendamentoMudancaServiceSpecific
 		List<AgendamentoMudancaDomain> verifyMudanca = agendamentoMudancaRepository.findByDataHora(agendamento.getDataHora());
 	
 		if(verifyMudanca.isEmpty()) {
-			return agendamentoMudancaRepository.save(agendamento);	
+			if(horarioNaoPermitido(data, hora)) {
+			return agendamentoMudancaRepository.save(agendamento);
+			
+			} else { 
+				throw new ObjectNotFoundException("Horario não disponivel em fim de semanas " + AgendamentoMudancaDomain.class.getName());
+				}
+			
 		} else {
-			 throw new ObjectNotFoundException("Horario ja cadastrado" + AgendamentoMudancaDomain.class.getName());
+			 throw new ObjectNotFoundException("Horario ja cadastrado " + AgendamentoMudancaDomain.class.getName());
 		}
 		
 	}
 	
+	private Boolean eFimDeSemana(String data) {
+		try {
+			SimpleDateFormat parser = new SimpleDateFormat("yyyy-MM-dd");
+			Calendar cal = Calendar.getInstance();
+			cal.setTime(parser.parse(data));
+			return cal.get(Calendar.DAY_OF_WEEK) == 6 || cal.get(Calendar.DAY_OF_WEEK) == 7;
+		} catch (ParseException e) {
+			throw new ObjectNotFoundException("erro ao pegar data");
+		}
+		
+	}
+	
+	private Boolean horarioNaoPermitido(String data, String hora) {
+		List<String> horas = List.of("15:00:00", "17:00:00");
+		if(eFimDeSemana(data)){
+			return horas.contains(hora) ? false : true;
+		}
+		return true;
+	}
 }

@@ -9,6 +9,7 @@ import javax.persistence.criteria.Predicate;
 import javax.transaction.Transactional;
 
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.util.StringUtils;
 
 import com.softcondominios.api.domain.AgendamentoMudancaDomain;
 
@@ -34,5 +35,23 @@ public class AgendamentoMudancaServiceSpecifications {
 			return builder.and(predicados.toArray(new Predicate[0]));
 		};
 	}
+	
+	@Transactional
+	public Specification<AgendamentoMudancaDomain> searchByData(String data) {
+		
+		return (root, query, builder) -> {
+			List<Predicate> predicados = new ArrayList<>();
+			if(StringUtils.hasText(data)) {
+				Path<String> campo = root.get("dataHora");
+				Predicate predicado = builder.like(campo, "%" + data + "%");
+				predicados.add(predicado);
+			}
+			
+			
+			
+			return builder.and(predicados.toArray(new Predicate[0]));
+		};
+	}
+	
 	
 }

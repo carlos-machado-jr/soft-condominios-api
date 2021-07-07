@@ -105,6 +105,14 @@ public class AgendamentoMudancaDomain implements Serializable {
 	public void setMorador(MoradorDomain morador) {
 		this.morador = morador;
 	}
+
+
+
+	@Override
+	public String toString() {
+		return "AgendamentoMudancaDomain [id=" + id + ", dataHora=" + dataHora + ", observacao=" + observacao
+				+ ", status=" + status + ", morador=" + morador + "]";
+	}
 	
 	
 }

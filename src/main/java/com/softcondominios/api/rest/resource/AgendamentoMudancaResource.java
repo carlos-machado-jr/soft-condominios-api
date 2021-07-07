@@ -1,6 +1,7 @@
 package com.softcondominios.api.rest.resource;
 
 import java.net.URI;
+import java.text.ParseException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -49,6 +50,16 @@ public class AgendamentoMudancaResource {
 		
 	}
 	
+	@ApiOperation("Retorna uma lista horarios disponiveis")
+	@GetMapping("/buscar-horarios")
+	public ResponseEntity<List<String>> search(
+																@RequestParam(required = false) String data
+																) throws ParseException{
+		List<String> agendamento = agendamentoMudancaService.buscarHoraDisponivel(data);
+		return ResponseEntity.ok(agendamento);
+		
+	}
+	
 	
 	@ApiOperation("Agendar mudanca")
 	@PostMapping
@@ -64,4 +75,6 @@ public class AgendamentoMudancaResource {
 	private Page<ViewAgendamentoMudancaDto> convertDtoPage(List<AgendamentoMudancaDomain> agendamentoMudancaDomain){
 		return new PageImpl<>(agendamentoMudancaDomain.stream().map(a -> new ViewAgendamentoMudancaDto(a)).collect(Collectors.toList()));
 	}
+	
+
 }
