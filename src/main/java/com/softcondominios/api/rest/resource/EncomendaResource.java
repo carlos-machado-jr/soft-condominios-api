@@ -47,6 +47,14 @@ public class EncomendaResource {
 		return ResponseEntity.ok(convertDto(encomendaService.search(status, condominio, pageable).getContent()));
 	}
 	
+	@ApiOperation("Busca dinamica")
+	@GetMapping("/moradores")
+	public ResponseEntity<Page<ViewEncomendasDto>> searchByMorador(@RequestParam(required = false) Boolean status,
+														   @RequestParam(required = false) Long condominio,			
+												           Pageable pageable){
+		return ResponseEntity.ok(convertDto(encomendaService.searchByMorador(status, condominio, pageable).getContent()));
+	}
+	
 	
 	
 	@ApiOperation("Cria uma encomenda")

@@ -90,7 +90,7 @@ public class MoradorService extends MoradorServiceSpecifications{
 			
 		
 		return moradorRepository.findByEmail(auth.getName()).orElseThrow(() -> 
-		new ObjectNotFoundException("Colaborador nao encontrado! email: " + auth.getName() + ", Tipo: " + MoradorDomain.class.getName()));
+		new ObjectNotFoundException("Morador nao encontrado! email: " + auth.getName() + ", Tipo: " + MoradorDomain.class.getName()));
 	}
 	
 	private String criptografarSenha(String senha) {

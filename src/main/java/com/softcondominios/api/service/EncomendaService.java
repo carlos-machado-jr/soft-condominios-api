@@ -38,6 +38,12 @@ public class EncomendaService extends EncomendaServiceEspecifications{
 		return encomendaRepository.findAll(searchBy(status, condominio), pageable);
 	}
 	
+	@Transactional
+	public Page<EncomendaDomain> searchByMorador(Boolean status, Long condominio, Pageable pageable){
+		MoradorDomain morador = moradorService.findByMorador();
+		return encomendaRepository.findAll(searchBy(status, condominio, morador), pageable);
+	}
+	
 	public EncomendaDomain save(NewEncomendasDto newEncomendas) {
 		ColaboradorDomain colaborador = colaboradorService.findByColaborador();
 		String autor = colaborador.getNome() + " " + colaborador.getSobrenome();
