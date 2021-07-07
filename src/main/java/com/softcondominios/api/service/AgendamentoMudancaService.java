@@ -2,6 +2,7 @@ package com.softcondominios.api.service;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Iterator;
 import java.util.List;
@@ -40,7 +41,7 @@ public class AgendamentoMudancaService extends AgendamentoMudancaServiceSpecific
 		List<String> horas = List.of("09:00:00", "11:00:00", "13:00:00", "15:00:00", "17:00:00");
 		List<AgendamentoMudancaDomain> agendamento = agendamentoMudancaRepository.findAll(searchByData(data));
 		
-		horas = eFimDeSemana(data) ? List.of("09:00:00", "11:00:00", "13:00:00") : horas;
+		horas = eFimDeSemana(data) ? Arrays.asList("09:00:00", "11:00:00", "13:00:00") : horas;
 		
 		if(Objects.nonNull(agendamento)) {
 			for(Iterator<AgendamentoMudancaDomain> iterator = agendamento.iterator(); iterator.hasNext();) {
@@ -100,7 +101,7 @@ public class AgendamentoMudancaService extends AgendamentoMudancaServiceSpecific
 	}
 	
 	private Boolean horarioNaoPermitido(String data, String hora) {
-		List<String> horas = List.of("15:00:00", "17:00:00");
+		List<String> horas =  Arrays.asList("15:00:00", "17:00:00");
 		if(eFimDeSemana(data)){
 			return horas.contains(hora) ? false : true;
 		}
