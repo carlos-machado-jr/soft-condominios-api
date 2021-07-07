@@ -12,6 +12,7 @@ public class ViewMoradorDto {
 	private String apartamento;
 	private String bloco;
 	private ViewCondominioDto condominio;
+	private UserDto usuario;
 	
 	public ViewMoradorDto() {
 		// TODO Auto-generated constructor stub
@@ -26,6 +27,7 @@ public class ViewMoradorDto {
 		this.apartamento = morador.getApartamento();
 		this.bloco = morador.getBloco();
 		this.condominio = convertDto(morador.getCondominio());
+		this.usuario = new UserDto(morador.getUsuario());
 	}
 	
 	private ViewCondominioDto convertDto(CondominioDomain c) {
@@ -34,6 +36,15 @@ public class ViewMoradorDto {
 	}
 	
 	
+	
+
+	public UserDto getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(UserDto usuario) {
+		this.usuario = usuario;
+	}
 
 	public Long getId() {
 		return id;

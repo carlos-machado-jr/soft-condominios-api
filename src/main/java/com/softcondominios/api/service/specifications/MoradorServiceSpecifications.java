@@ -37,7 +37,7 @@ public class MoradorServiceSpecifications {
 		};
 	}
 	
-	public Specification<MoradorDomain> searchBy( String nomeCompleto) {
+	public Specification<MoradorDomain> searchBy( String nomeCompleto, Long condominio) {
 		
 		return (root, query, builder) -> {
 			List<Predicate> predicados = new ArrayList<>();
@@ -58,6 +58,11 @@ public class MoradorServiceSpecifications {
 				Path<String> campo1 = root.get("nome");
 				Path<String> campo2 = root.get("sobrenome");
 				Predicate predicado = builder.or(builder.like(campo1, "%"+sobrenome+"%"), builder.like(campo2, "%"+sobrenome+"%"));
+				predicados.add(predicado);
+			}
+			if(condominio != null) {
+				Path<CondominioDomain> condominioCampo = root.get("condominio");
+				Predicate predicado = builder.equal(condominioCampo, condominio);
 				predicados.add(predicado);
 			}
 			return builder.and(predicados.toArray(new Predicate[0]));

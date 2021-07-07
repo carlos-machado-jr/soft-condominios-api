@@ -64,10 +64,10 @@ public class MoradorResource {
 	}
 	
 	@GetMapping("/searchByNome")
-	public ResponseEntity<List<ViewMoradorDto>> findBySearchNome(@RequestParam(required = false) String nome){
+	public ResponseEntity<List<ViewMoradorDto>> findBySearchNome(@RequestParam(required = false) String nome, @RequestParam(required = false) Long condominio){
 			
 		
-		List<ViewMoradorDto> moradorDto = convertDtoList(moradorService.search(nome));
+		List<ViewMoradorDto> moradorDto = convertDtoList(moradorService.search(nome, condominio));
 		return ResponseEntity.ok(moradorDto); 
 	
 	}

@@ -19,6 +19,7 @@ public class ViewColaboradorDto implements Serializable {
 	private String status;
 	private String funcao;
 	private Set<ViewCondominioDto> condominio;
+	private UserDto usuario;
 	
 	public ViewColaboradorDto() {
 		// TODO Auto-generated constructor stub
@@ -35,12 +36,26 @@ public class ViewColaboradorDto implements Serializable {
 		this.status = colaborador.isStatus() ? "ativado" : "desativado";
 		this.funcao = colaborador.getFuncao();
 		this.condominio = convertDto(colaborador.getCondominio());
+		this.usuario = new UserDto(colaborador.getUsuario());
 	}
 
 	private Set<ViewCondominioDto> convertDto(Set<CondominioDomain> condominio) {
 //		List<CondominioDomain> newCondominio = new ArrayList<CondominioDomain>(condominio);
 		return  condominio.stream().map(c -> new ViewCondominioDto(c)).collect(Collectors.toSet()); 
 	}
+
+	
+	public UserDto getUsuario() {
+		return usuario;
+	}
+
+
+
+	public void setUsuario(UserDto usuario) {
+		this.usuario = usuario;
+	}
+
+
 
 	public String getNome() {
 		return nome;

@@ -51,9 +51,9 @@ public class MoradorService extends MoradorServiceSpecifications{
 		return moradorRepository.findAll(searchBy(condominio,nome, email), pageable);
 	}
 	
-	public List<MoradorDomain> search(String nomeCompleto){
+	public List<MoradorDomain> search(String nomeCompleto, Long condominio){
 		
-		return moradorRepository.findAll(searchBy(nomeCompleto));
+		return moradorRepository.findAll(searchBy(nomeCompleto, condominio));
 	}
 	public MoradorDomain findById(Long id) {
 		return moradorRepository.findById(id).orElseThrow(() -> 
