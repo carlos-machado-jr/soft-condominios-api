@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "09379087-8462-4f93-9594-16b224ac21af",
+		"_postman_id": "773ff5f3-4033-4d27-8727-e9287520a8fd",
 		"name": "soft-condominios",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -22,7 +22,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"cpf\": \"111.444.555-00\",\r\n  \"email\": \"sindico@softcondominios.com\",\r\n  \"funcao\": \"Sindico\",\r\n  \"nome\": \"Patrick\",\r\n  \"senha\": \"teste\",\r\n  \"sobrenome\": \"Souza\"\r\n}"
+							"raw": "{\r\n  \"cpf\": \"000.000.000-01\",\r\n  \"email\": \"sindico@softcondominios.com\",\r\n  \"nome\": \"Andre\",\r\n  \"senha\": \"teste\",\r\n  \"sobrenome\": \"Souza Santos\"\r\n}"
 						},
 						"url": {
 							"raw": "http://localhost:8080/colaboradores",
@@ -33,6 +33,37 @@
 							"port": "8080",
 							"path": [
 								"colaboradores"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "cadastrar funcionarios",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"cpf\": \"000.000.000-02\",\r\n  \"email\": \"porteiro@softcondominios.com\",\r\n  \"funcao\": \"Porteiro\",\r\n  \"nome\": \"Joao\",\r\n  \"senha\": \"teste\",\r\n  \"sobrenome\": \"Augusto dos Santos\",\r\n  \"condominio\" : 1\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/colaboradores/funcionarios",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"colaboradores",
+								"funcionarios"
 							]
 						}
 					},
@@ -81,7 +112,7 @@
 							{
 								"key": "Authorization",
 								"type": "text",
-								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbmRyZUBzb2Z0Y29uZG9taW5pb3MuY29tIiwiZXhwIjoxNjI1NTE1MjczfQ.CD2MWPbelgMW_-QOB9Cqy8ZCaw7pGFxCRxrAMoc3yeaaAQEe5jdUwk43kHW6VndTGcOK0TOEWMEZgcktrRTHEg"
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJwb3J0ZWlyb0Bzb2Z0Y29uZG9taW5pb3MuY29tIiwiZXhwIjoxNjI1NzcwMjgzfQ.fGzw2ViWW5Vdt8BpPWgY26YuJGxdb0cMkeXNkiIHn9VT4FhZOTJzy9rSR4MbNRpco3exn360Kmidze92oc7cuQ"
 							}
 						],
 						"body": {
@@ -122,7 +153,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"cpf\": \"011.052.005-00\",\r\n  \"email\": \"carlosjose@gmail.com\",\r\n  \"apartamento\": \"110\",\r\n  \"bloco\":\"A\",\r\n  \"nome\": \"jose\",\r\n  \"senha\": \"teste\",\r\n  \"sobrenome\": \"Henrique\"\r\n}"
+							"raw": "{\r\n  \"cpf\": \"000.000.000-10\",\r\n  \"email\": \"yago@gmail.com\",\r\n  \"apartamento\": \"111\",\r\n  \"bloco\":\"A\",\r\n  \"nome\": \"yago\",\r\n  \"senha\": \"teste\",\r\n  \"sobrenome\": \"Santos\"\r\n}"
 						},
 						"url": {
 							"raw": "http://localhost:8080/moradores?condominioId=1",
@@ -195,7 +226,7 @@
 							"raw": "{\r\n  \"cpf\": \"148.923.137-42\",\r\n  \"email\": \"machadopnn@gmail.com\",\r\n  \"funcao\": \"Sindico\",\r\n  \"nome\": \"Carlos\",\r\n  \"senha\": \"teste\",\r\n  \"sobrenome\": \"Henrique\"\r\n}"
 						},
 						"url": {
-							"raw": "http://localhost:8080/moradores/search?email=jos@gmail.com",
+							"raw": "http://localhost:8080/moradores/search?condominio=1",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -207,8 +238,51 @@
 							],
 							"query": [
 								{
-									"key": "email",
-									"value": "jos@gmail.com"
+									"key": "condominio",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "buscar moradores por nome",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbmRyZUBzb2Z0Y29uZG9taW5pb3MuY29tIiwiZXhwIjoxNjI1MDExMTMzfQ.lH0Zn6ksi_OtBxC-GGZj0lI-ptFIyYRrS74Q3OodTTuy3eERK-7fHknxaMmAB_7HWcCXtNCw-oryEkBl9giF7w"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"cpf\": \"148.923.137-42\",\r\n  \"email\": \"machadopnn@gmail.com\",\r\n  \"funcao\": \"Sindico\",\r\n  \"nome\": \"Carlos\",\r\n  \"senha\": \"teste\",\r\n  \"sobrenome\": \"Henrique\"\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/moradores/searchByNome?condominio=1&nome=carlos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"moradores",
+								"searchByNome"
+							],
+							"query": [
+								{
+									"key": "condominio",
+									"value": "1"
+								},
+								{
+									"key": "nome",
+									"value": "carlos"
 								}
 							]
 						}
@@ -286,7 +360,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJDYXJsb3MyQGdtYWlsLmNvbSIsImV4cCI6MTYyNTYwMDI5M30.zTxdGjQG9Fa8o-o5KdxZ116BHrTwGw0h7tbH9ZHFt-hGTXJwSO95JA2axCuVv6ITvnUrFqo8VRv7duFxl5IxbQ",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJjYXJsb3Nqb3NlQGdtYWlsLmNvbSIsImV4cCI6MTYyNTcyMTg4NX0.JTAPT2STICZevYv_HiTajOJheAlf6UqAJWYd2GjtcEDoZKofVBuNeCf_PBBaou1AL5Wevwu9YTMbMFyjTczTSA",
 								"type": "text"
 							}
 						],
@@ -321,7 +395,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzaW5kaWNvQHNvZnRjb25kb21pbmlvcy5jb20iLCJleHAiOjE2MjU2MTExOTd9.Do8JpjQCs3ukVCYUo_OdIrUsSThU9OioDcWfXzF34vm_LXro75WnVpEx7XRgnlWrUH2CaVuhVBPqFvoo3MbqGg",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzaW5kaWNvQHNvZnRjb25kb21pbmlvcy5jb20iLCJleHAiOjE2MjU3MDUxMjl9.EN7aU64LgBY1Oqtgyt01Nr_Y_CtLIOxcfjd2mxb2XDrrvjG8RW_lngZ_afgB9cWsDMy_nrnVfPMGKPDjLBCSzQ",
 								"type": "text"
 							},
 							{
@@ -392,10 +466,6 @@
 								"type": "text"
 							}
 						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "http://app.axdeveloper.com.br/condominios/search?bairro=Trind",
 							"protocol": "http",
@@ -479,13 +549,13 @@
 			"name": "encomendas",
 			"item": [
 				{
-					"name": "cadastrar encomendas (necessario autenticacao como admin)",
+					"name": "cadastrar encomendas (necessario autenticacao como porteiro ou zelador)",
 					"request": {
 						"method": "POST",
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJjYXJsb3Nqb3NlQGdtYWlsLmNvbSIsImV4cCI6MTYyNTYxMTQyMX0.dMePsun3tMCxofZN1W32JsaJuuyf_CprEyAfvgSupvaA4U4f1iZhCN2xkH33lt1DUy4fiW3zQEOICdWX_eVD6A",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJwb3J0ZWlyb0Bzb2Z0Y29uZG9taW5pb3MuY29tIiwiZXhwIjoxNjI1NzA1Mzg3fQ.Cdwbbqdgpx5a29dT6mMN4609QETYXMMsiN7njiOwX7t_gomWYOao1VuxUc7gP_MAS5aHnvLTSQQ6WRoyIAWkhw",
 								"type": "text"
 							},
 							{
@@ -497,7 +567,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"descricao\": \"PS4 2\",\r\n  \"destinatario\" : \"Patrick \"\r\n \r\n}"
+							"raw": "{\r\n  \"descricao\": \"caixa preta 1\",\r\n  \"destinatario\" : 1\r\n \r\n}"
 						},
 						"url": {
 							"raw": "http://localhost:8080/encomendas",
@@ -514,6 +584,43 @@
 					"response": []
 				},
 				{
+					"name": "atualizar encomendas",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJjYXJsb3Nqb3NlQGdtYWlsLmNvbSIsImV4cCI6MTYyNTYxMTQyMX0.dMePsun3tMCxofZN1W32JsaJuuyf_CprEyAfvgSupvaA4U4f1iZhCN2xkH33lt1DUy4fiW3zQEOICdWX_eVD6A",
+								"disabled": true
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"descricao\": \"PS4 2\",\r\n  \"destinatario\" : 4,\r\n  \"status\": true\r\n \r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/encomendas/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"encomendas",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "buscar encomendas",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
@@ -524,7 +631,8 @@
 							{
 								"key": "Authorization",
 								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJjYXJsb3Nqb3NlQGdtYWlsLmNvbSIsImV4cCI6MTYyNTYxMTQyMX0.dMePsun3tMCxofZN1W32JsaJuuyf_CprEyAfvgSupvaA4U4f1iZhCN2xkH33lt1DUy4fiW3zQEOICdWX_eVD6A",
-								"type": "text"
+								"type": "text",
+								"disabled": true
 							}
 						],
 						"body": {
@@ -540,6 +648,423 @@
 							"port": "8080",
 							"path": [
 								"encomendas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "buscar encomenda dinamicamente",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJjYXJsb3Nqb3NlQGdtYWlsLmNvbSIsImV4cCI6MTYyNTYxMTQyMX0.dMePsun3tMCxofZN1W32JsaJuuyf_CprEyAfvgSupvaA4U4f1iZhCN2xkH33lt1DUy4fiW3zQEOICdWX_eVD6A",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"cpf\": \"148.923.137-42\",\r\n  \"email\": \"machadopnn@gmail.com\",\r\n  \"funcao\": \"Sindico\",\r\n  \"nome\": \"Carlos\",\r\n  \"senha\": \"teste\",\r\n  \"sobrenome\": \"Henrique\"\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/encomendas/search?condominio=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"encomendas",
+								"search"
+							],
+							"query": [
+								{
+									"key": "condominio",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "buscar encomenda pelo morador",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJjYXJsb3Nqb3NlQGdtYWlsLmNvbSIsImV4cCI6MTYyNTcyMTI5N30.NdPRtZWwKAzRWJwevVjWBFi7uJDeHZWcNAbN74SETq2LjBoowlFnCri_JrtDGeS2AphMv5DfgvRtkLGLqX9hAA"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"cpf\": \"148.923.137-42\",\r\n  \"email\": \"machadopnn@gmail.com\",\r\n  \"funcao\": \"Sindico\",\r\n  \"nome\": \"Carlos\",\r\n  \"senha\": \"teste\",\r\n  \"sobrenome\": \"Henrique\"\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/encomendas/moradores",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"encomendas",
+								"moradores"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "visitantes",
+			"item": [
+				{
+					"name": "cadastrar visitante (necessario autenticacao como porteiro ou zelador)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJwb3J0ZWlyb0Bzb2Z0Y29uZG9taW5pb3MuY29tIiwiZXhwIjoxNjI1NzcwMjgzfQ.fGzw2ViWW5Vdt8BpPWgY26YuJGxdb0cMkeXNkiIHn9VT4FhZOTJzy9rSR4MbNRpco3exn360Kmidze92oc7cuQ"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nome\": \"caio\",\r\n  \"sobrenome\" : \"Souza\",\r\n  \"cpf\" : \"000.000.000-04\",\r\n  \"tipoVisitante\" : \"visitante\",\r\n  \"bloco\": \"A\",\r\n  \"apartamento\":\"120\",\r\n  \"observacao\": \"quarto visitante cadastrado\",\r\n  \"condominio\": 1\r\n \r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/visitantes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"visitantes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "atualizar visitantes",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJjYXJsb3Nqb3NlQGdtYWlsLmNvbSIsImV4cCI6MTYyNTYxMTQyMX0.dMePsun3tMCxofZN1W32JsaJuuyf_CprEyAfvgSupvaA4U4f1iZhCN2xkH33lt1DUy4fiW3zQEOICdWX_eVD6A",
+								"disabled": true
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n \r\n  \"status\": false\r\n \r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/visitantes/4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"visitantes",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "buscar visitantes",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJjYXJsb3Nqb3NlQGdtYWlsLmNvbSIsImV4cCI6MTYyNTYxMTQyMX0.dMePsun3tMCxofZN1W32JsaJuuyf_CprEyAfvgSupvaA4U4f1iZhCN2xkH33lt1DUy4fiW3zQEOICdWX_eVD6A",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"cpf\": \"148.923.137-42\",\r\n  \"email\": \"machadopnn@gmail.com\",\r\n  \"funcao\": \"Sindico\",\r\n  \"nome\": \"Carlos\",\r\n  \"senha\": \"teste\",\r\n  \"sobrenome\": \"Henrique\"\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/visitantes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"visitantes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "buscar visitantes dinamicamente",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJjYXJsb3Nqb3NlQGdtYWlsLmNvbSIsImV4cCI6MTYyNTYxMTQyMX0.dMePsun3tMCxofZN1W32JsaJuuyf_CprEyAfvgSupvaA4U4f1iZhCN2xkH33lt1DUy4fiW3zQEOICdWX_eVD6A",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"cpf\": \"148.923.137-42\",\r\n  \"email\": \"machadopnn@gmail.com\",\r\n  \"funcao\": \"Sindico\",\r\n  \"nome\": \"Carlos\",\r\n  \"senha\": \"teste\",\r\n  \"sobrenome\": \"Henrique\"\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/visitantes/search?condominio=1&status=true",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"visitantes",
+								"search"
+							],
+							"query": [
+								{
+									"key": "condominio",
+									"value": "1"
+								},
+								{
+									"key": "status",
+									"value": "true"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "agendamento mudancas",
+			"item": [
+				{
+					"name": "cadastrar mudancas (necessario autenticacao como morador)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJjYXJsb3Nqb3NlQGdtYWlsLmNvbSIsImV4cCI6MTYyNTcwNTQ3N30.SWFls3YyoFrF2yQEIBZ0Wf0ZHUQU32su77qwwaJGTSZ-5nydSHjUiYqC_T_z6555ylIBEpmya-E6Vi-s2cgbdw"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"data\": \"2021-07-10\",\r\n  \"hora\" : \"11:00:00\",\r\n  \"observacao\": \"testando uma agendamento\"\r\n \r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/agendamentos-mudanca",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"agendamentos-mudanca"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "atualizar agendamentos",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJjYXJsb3Nqb3NlQGdtYWlsLmNvbSIsImV4cCI6MTYyNTYxMTQyMX0.dMePsun3tMCxofZN1W32JsaJuuyf_CprEyAfvgSupvaA4U4f1iZhCN2xkH33lt1DUy4fiW3zQEOICdWX_eVD6A",
+								"disabled": true
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"descricao\": \"PS4 2\",\r\n  \"destinatario\" : 4,\r\n  \"status\": true\r\n \r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/agendamentos-mudanca/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"agendamentos-mudanca",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "buscar agendamentos",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJjYXJsb3Nqb3NlQGdtYWlsLmNvbSIsImV4cCI6MTYyNTYxMTQyMX0.dMePsun3tMCxofZN1W32JsaJuuyf_CprEyAfvgSupvaA4U4f1iZhCN2xkH33lt1DUy4fiW3zQEOICdWX_eVD6A",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"cpf\": \"148.923.137-42\",\r\n  \"email\": \"machadopnn@gmail.com\",\r\n  \"funcao\": \"Sindico\",\r\n  \"nome\": \"Carlos\",\r\n  \"senha\": \"teste\",\r\n  \"sobrenome\": \"Henrique\"\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/agendamentos-mudanca",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"agendamentos-mudanca"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "buscar agendamentos dinamicamente",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJjYXJsb3Nqb3NlQGdtYWlsLmNvbSIsImV4cCI6MTYyNTYxMTQyMX0.dMePsun3tMCxofZN1W32JsaJuuyf_CprEyAfvgSupvaA4U4f1iZhCN2xkH33lt1DUy4fiW3zQEOICdWX_eVD6A",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"cpf\": \"148.923.137-42\",\r\n  \"email\": \"machadopnn@gmail.com\",\r\n  \"funcao\": \"Sindico\",\r\n  \"nome\": \"Carlos\",\r\n  \"senha\": \"teste\",\r\n  \"sobrenome\": \"Henrique\"\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/agendamentos-mudanca/search?condominio=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"agendamentos-mudanca",
+								"search"
+							],
+							"query": [
+								{
+									"key": "condominio",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "buscar horarios disponiveis",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJjYXJsb3Nqb3NlQGdtYWlsLmNvbSIsImV4cCI6MTYyNTYxMTQyMX0.dMePsun3tMCxofZN1W32JsaJuuyf_CprEyAfvgSupvaA4U4f1iZhCN2xkH33lt1DUy4fiW3zQEOICdWX_eVD6A",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"cpf\": \"148.923.137-42\",\r\n  \"email\": \"machadopnn@gmail.com\",\r\n  \"funcao\": \"Sindico\",\r\n  \"nome\": \"Carlos\",\r\n  \"senha\": \"teste\",\r\n  \"sobrenome\": \"Henrique\"\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/agendamentos-mudanca/buscar-horarios?data=2021-07-11",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"agendamentos-mudanca",
+								"buscar-horarios"
+							],
+							"query": [
+								{
+									"key": "data",
+									"value": "2021-07-11"
+								}
 							]
 						}
 					},
@@ -564,7 +1089,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\":\"carlosjose@gmail.com\",\r\n    \"senha\":\"teste\"\r\n}"
+							"raw": "{\r\n    \"email\":\"porteiro@softcondominios.com\",\r\n    \"senha\":\"teste\"\r\n}"
 						},
 						"url": {
 							"raw": "http://localhost:8080/login",

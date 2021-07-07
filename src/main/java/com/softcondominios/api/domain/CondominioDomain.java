@@ -75,6 +75,10 @@ public class CondominioDomain implements Serializable {
 	@JoinColumn(name = "con_bar_id")
 	private BairroDomain bairro;
 	
+	@JsonIgnore
+	@OneToMany(mappedBy = "condominio")
+	private Set<VisitanteDomain> visitantes;
+	
 	
 //	construtores ------------//////////-
 //	construtores ------------//////////-
@@ -215,6 +219,14 @@ public class CondominioDomain implements Serializable {
 
 	public void setBairro(BairroDomain bairro) {
 		this.bairro = bairro;
+	}
+
+	public Set<VisitanteDomain> getVisitantes() {
+		return visitantes;
+	}
+
+	public void setVisitantes(Set<VisitanteDomain> visitantes) {
+		this.visitantes = visitantes;
 	}
 
 	

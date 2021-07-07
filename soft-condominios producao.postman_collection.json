@@ -102,6 +102,39 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "cadastrar funcionarios",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"cpf\": \"111.444.555-08\",\r\n  \"email\": \"porteiro5@softcondominios.com\",\r\n  \"funcao\": \"Porteiro\",\r\n  \"nome\": \"Porteiro\",\r\n  \"senha\": \"teste\",\r\n  \"sobrenome\": \"Souza\",\r\n  \"condominio\" : 5\r\n}"
+						},
+						"url": {
+							"raw": "http://app.axdeveloper.com.br/colaboradores/funcionarios",
+							"protocol": "http",
+							"host": [
+								"app",
+								"axdeveloper",
+								"com",
+								"br"
+							],
+							"path": [
+								"colaboradores",
+								"funcionarios"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -122,22 +155,24 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"cpf\": \"011.052.005-75\",\r\n  \"email\": \"ca@gmail.com\",\r\n  \"apartamento\": \"110\",\r\n  \"bloco\":\"A\",\r\n  \"nome\": \"carlos\",\r\n  \"senha\": \"teste\",\r\n  \"sobrenome\": \"Henrique\"\r\n}"
+							"raw": "{\r\n  \"cpf\": \"011.052.005-70\",\r\n  \"email\": \"carlos@gmail.com\",\r\n  \"apartamento\": \"110\",\r\n  \"bloco\":\"A\",\r\n  \"nome\": \"carlos\",\r\n  \"senha\": \"teste\",\r\n  \"sobrenome\": \"Henrique\"\r\n}"
 						},
 						"url": {
-							"raw": "http://localhost:8080/moradores?condominioId=2",
+							"raw": "http://app.axdeveloper.com.br/moradores?condominioId=5",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"app",
+								"axdeveloper",
+								"com",
+								"br"
 							],
-							"port": "8080",
 							"path": [
 								"moradores"
 							],
 							"query": [
 								{
 									"key": "condominioId",
-									"value": "2"
+									"value": "5"
 								}
 							]
 						}
@@ -163,12 +198,14 @@
 							"raw": "{\r\n  \"cpf\": \"148.923.137-42\",\r\n  \"email\": \"machadopnn@gmail.com\",\r\n  \"funcao\": \"Sindico\",\r\n  \"nome\": \"Carlos\",\r\n  \"senha\": \"teste\",\r\n  \"sobrenome\": \"Henrique\"\r\n}"
 						},
 						"url": {
-							"raw": "http://localhost:8080/moradores",
+							"raw": "http://app.axdeveloper.com.br/moradores",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"app",
+								"axdeveloper",
+								"com",
+								"br"
 							],
-							"port": "8080",
 							"path": [
 								"moradores"
 							]
@@ -195,12 +232,14 @@
 							"raw": "{\r\n  \"cpf\": \"148.923.137-42\",\r\n  \"email\": \"machadopnn@gmail.com\",\r\n  \"funcao\": \"Sindico\",\r\n  \"nome\": \"Carlos\",\r\n  \"senha\": \"teste\",\r\n  \"sobrenome\": \"Henrique\"\r\n}"
 						},
 						"url": {
-							"raw": "http://localhost:8080/moradores/search?condominio=2&nome=ca",
+							"raw": "http://app.axdeveloper.com.br/moradores/search?condominio=2&nome=ca",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"app",
+								"axdeveloper",
+								"com",
+								"br"
 							],
-							"port": "8080",
 							"path": [
 								"moradores",
 								"search"
@@ -213,6 +252,47 @@
 								{
 									"key": "nome",
 									"value": "ca"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "buscar moradores por nome",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbmRyZUBzb2Z0Y29uZG9taW5pb3MuY29tIiwiZXhwIjoxNjI1MDExMTMzfQ.lH0Zn6ksi_OtBxC-GGZj0lI-ptFIyYRrS74Q3OodTTuy3eERK-7fHknxaMmAB_7HWcCXtNCw-oryEkBl9giF7w"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"cpf\": \"148.923.137-42\",\r\n  \"email\": \"machadopnn@gmail.com\",\r\n  \"funcao\": \"Sindico\",\r\n  \"nome\": \"Carlos\",\r\n  \"senha\": \"teste\",\r\n  \"sobrenome\": \"Henrique\"\r\n}"
+						},
+						"url": {
+							"raw": "http://app.axdeveloper.com.br/moradores/searchByNome?nome=henrique",
+							"protocol": "http",
+							"host": [
+								"app",
+								"axdeveloper",
+								"com",
+								"br"
+							],
+							"path": [
+								"moradores",
+								"searchByNome"
+							],
+							"query": [
+								{
+									"key": "nome",
+									"value": "henrique"
 								}
 							]
 						}
@@ -267,12 +347,14 @@
 							"raw": "{\r\n  \"cpf\": \"148.923.137-42\",\r\n  \"email\": \"machadopnn@gmail.com\",\r\n  \"funcao\": \"Sindico\",\r\n  \"nome\": \"Carlos\",\r\n  \"senha\": \"teste\",\r\n  \"sobrenome\": \"Henrique\"\r\n}"
 						},
 						"url": {
-							"raw": "http://localhost:8080/usuarios",
+							"raw": "http://app.axdeveloper.com.br/usuarios",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"app",
+								"axdeveloper",
+								"com",
+								"br"
 							],
-							"port": "8080",
 							"path": [
 								"usuarios"
 							]
@@ -281,7 +363,7 @@
 					"response": []
 				},
 				{
-					"name": "buscar usuarios autenticados Copy",
+					"name": "buscar usuarios autenticados",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -290,8 +372,8 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbmRyZUBzb2Z0Y29uZG9taW5pb3MuY29tIiwiZXhwIjoxNjI1NTk2MTE1fQ.E1ORab-L8aZ2gQce5jVvqo46EM6TgwYTOzDPTL54BqK0_NBWEND9qktEY1em-i023ORzhJju6_wG46FLvHU52Q",
-								"type": "text"
+								"type": "text",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJjYXJsb3NAZ21haWwuY29tIiwiZXhwIjoxNjI1NjAzODc1fQ.IfRcbMzY44ErJIinvoFwqHy_RUJbmjGlTnOmyTR5MJEl9LV0vjNXjwPwtnqLL6XLLFquEC4Px22XL84RpG4yzw"
 							}
 						],
 						"body": {
@@ -327,7 +409,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzaW5kaWNvQHNvZnRjb25kb21pbmlvcy5jb20iLCJleHAiOjE2MjU1MzgyMDR9.5Rwtn3p-PI7Lal8NBN7znmF4u7L1ZzWnhpmYRhFd2rWKcCZx2NF-9-KvT304ZQrrc2ruRCqjCPChyb03m8mKOA",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzaW5kaWNvQHNvZnRjb25kb21pbmlvcy5jb20iLCJleHAiOjE2MjU2MDM3Nzd9.U4bz8WEFvyRvflDMo1io_BeN3KJvf5XKk_MjjgxbvKelIOINXh1jhYZCz8J-DjgylB9kt3N3Qu1rDbODNaULnw",
 								"type": "text"
 							},
 							{
@@ -502,7 +584,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\":\"sindico@softcondominios.com\",\r\n    \"senha\":\"teste\"\r\n}"
+							"raw": "{\r\n    \"email\":\"porteiro5@softcondominios.com\",\r\n    \"senha\":\"teste\"\r\n}"
 						},
 						"url": {
 							"raw": "http://app.axdeveloper.com.br/login",
@@ -515,6 +597,540 @@
 							],
 							"path": [
 								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "encomendas",
+			"item": [
+				{
+					"name": "cadastrar encomendas (necessario autenticacao como admin)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJwb3J0ZWlybzVAc29mdGNvbmRvbWluaW9zLmNvbSIsImV4cCI6MTYyNTY4ODIwM30.NbkJySTQDi4xiMXaPIWGX65xRM2in_IUy__rKcSfncj4I6pAzKEYNe9X4gOLUzNamqwNs7BdFGYaMSC2afZjCg",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"descricao\": \"Notebook novo\",\r\n  \"destinatario\" : 35\r\n \r\n}"
+						},
+						"url": {
+							"raw": "http://app.axdeveloper.com.br/encomendas",
+							"protocol": "http",
+							"host": [
+								"app",
+								"axdeveloper",
+								"com",
+								"br"
+							],
+							"path": [
+								"encomendas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "buscar encomendas",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJjYXJsb3NAZ21haWwuY29tIiwiZXhwIjoxNjI1NjIzOTY0fQ.slMvlByW3jhrdMVpAQzYfn7BCvptjukE6UQktNk0APd5_FWQZ4N3llm1uhKE9LKgYn_RxbVvo8btASBCsStlkw",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"cpf\": \"148.923.137-42\",\r\n  \"email\": \"machadopnn@gmail.com\",\r\n  \"funcao\": \"Sindico\",\r\n  \"nome\": \"Carlos\",\r\n  \"senha\": \"teste\",\r\n  \"sobrenome\": \"Henrique\"\r\n}"
+						},
+						"url": {
+							"raw": "http://app.axdeveloper.com.br/encomendas",
+							"protocol": "http",
+							"host": [
+								"app",
+								"axdeveloper",
+								"com",
+								"br"
+							],
+							"path": [
+								"encomendas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "buscar encomenda dinamicamente",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJjYXJsb3Nqb3NlQGdtYWlsLmNvbSIsImV4cCI6MTYyNTYxMTQyMX0.dMePsun3tMCxofZN1W32JsaJuuyf_CprEyAfvgSupvaA4U4f1iZhCN2xkH33lt1DUy4fiW3zQEOICdWX_eVD6A",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"cpf\": \"148.923.137-42\",\r\n  \"email\": \"machadopnn@gmail.com\",\r\n  \"funcao\": \"Sindico\",\r\n  \"nome\": \"Carlos\",\r\n  \"senha\": \"teste\",\r\n  \"sobrenome\": \"Henrique\"\r\n}"
+						},
+						"url": {
+							"raw": "http://app.axdeveloper.com.br/encomendas/search?condominio=25",
+							"protocol": "http",
+							"host": [
+								"app",
+								"axdeveloper",
+								"com",
+								"br"
+							],
+							"path": [
+								"encomendas",
+								"search"
+							],
+							"query": [
+								{
+									"key": "condominio",
+									"value": "25"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "atualizar encomendas",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJjYXJsb3Nqb3NlQGdtYWlsLmNvbSIsImV4cCI6MTYyNTYxMTQyMX0.dMePsun3tMCxofZN1W32JsaJuuyf_CprEyAfvgSupvaA4U4f1iZhCN2xkH33lt1DUy4fiW3zQEOICdWX_eVD6A",
+								"disabled": true
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"descricao\": \"PS4 2\",\r\n  \"destinatario\" : 35,\r\n  \"status\": true\r\n \r\n}"
+						},
+						"url": {
+							"raw": "http://app.axdeveloper.com.br/encomendas/5",
+							"protocol": "http",
+							"host": [
+								"app",
+								"axdeveloper",
+								"com",
+								"br"
+							],
+							"path": [
+								"encomendas",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "buscar encomenda pelo morador",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJjYXJsb3Nqb3NlQGdtYWlsLmNvbSIsImV4cCI6MTYyNTcyMTI5N30.NdPRtZWwKAzRWJwevVjWBFi7uJDeHZWcNAbN74SETq2LjBoowlFnCri_JrtDGeS2AphMv5DfgvRtkLGLqX9hAA"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"cpf\": \"148.923.137-42\",\r\n  \"email\": \"machadopnn@gmail.com\",\r\n  \"funcao\": \"Sindico\",\r\n  \"nome\": \"Carlos\",\r\n  \"senha\": \"teste\",\r\n  \"sobrenome\": \"Henrique\"\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/encomendas/moradores",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"encomendas",
+								"moradores"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "visitantes",
+			"item": [
+				{
+					"name": "cadastrar visitante (necessario autenticacao como porteiro ou zelador)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJwb3J0ZWlyb0Bzb2Z0Y29uZG9taW5pb3MuY29tIiwiZXhwIjoxNjI1NzcwMjgzfQ.fGzw2ViWW5Vdt8BpPWgY26YuJGxdb0cMkeXNkiIHn9VT4FhZOTJzy9rSR4MbNRpco3exn360Kmidze92oc7cuQ"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nome\": \"caio\",\r\n  \"sobrenome\" : \"Souza\",\r\n  \"cpf\" : \"000.000.000-04\",\r\n  \"tipoVisitante\" : \"visitante\",\r\n  \"bloco\": \"A\",\r\n  \"apartamento\":\"120\",\r\n  \"observacao\": \"quarto visitante cadastrado\",\r\n  \"condominio\": 1\r\n \r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/visitantes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"visitantes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "atualizar visitantes",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJjYXJsb3Nqb3NlQGdtYWlsLmNvbSIsImV4cCI6MTYyNTYxMTQyMX0.dMePsun3tMCxofZN1W32JsaJuuyf_CprEyAfvgSupvaA4U4f1iZhCN2xkH33lt1DUy4fiW3zQEOICdWX_eVD6A",
+								"disabled": true
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n \r\n  \"status\": false\r\n \r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/visitantes/4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"visitantes",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "buscar visitantes",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJjYXJsb3Nqb3NlQGdtYWlsLmNvbSIsImV4cCI6MTYyNTYxMTQyMX0.dMePsun3tMCxofZN1W32JsaJuuyf_CprEyAfvgSupvaA4U4f1iZhCN2xkH33lt1DUy4fiW3zQEOICdWX_eVD6A",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"cpf\": \"148.923.137-42\",\r\n  \"email\": \"machadopnn@gmail.com\",\r\n  \"funcao\": \"Sindico\",\r\n  \"nome\": \"Carlos\",\r\n  \"senha\": \"teste\",\r\n  \"sobrenome\": \"Henrique\"\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/visitantes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"visitantes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "buscar visitantes dinamicamente",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJjYXJsb3Nqb3NlQGdtYWlsLmNvbSIsImV4cCI6MTYyNTYxMTQyMX0.dMePsun3tMCxofZN1W32JsaJuuyf_CprEyAfvgSupvaA4U4f1iZhCN2xkH33lt1DUy4fiW3zQEOICdWX_eVD6A",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"cpf\": \"148.923.137-42\",\r\n  \"email\": \"machadopnn@gmail.com\",\r\n  \"funcao\": \"Sindico\",\r\n  \"nome\": \"Carlos\",\r\n  \"senha\": \"teste\",\r\n  \"sobrenome\": \"Henrique\"\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/visitantes/search?condominio=1&status=true",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"visitantes",
+								"search"
+							],
+							"query": [
+								{
+									"key": "condominio",
+									"value": "1"
+								},
+								{
+									"key": "status",
+									"value": "true"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "agendamento mudancas",
+			"item": [
+				{
+					"name": "cadastrar mudancas (necessario autenticacao como morador)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJjYXJsb3Nqb3NlQGdtYWlsLmNvbSIsImV4cCI6MTYyNTcwNTQ3N30.SWFls3YyoFrF2yQEIBZ0Wf0ZHUQU32su77qwwaJGTSZ-5nydSHjUiYqC_T_z6555ylIBEpmya-E6Vi-s2cgbdw"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"data\": \"2021-07-10\",\r\n  \"hora\" : \"11:00:00\",\r\n  \"observacao\": \"testando uma agendamento\"\r\n \r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/agendamentos-mudanca",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"agendamentos-mudanca"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "atualizar agendamentos",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJjYXJsb3Nqb3NlQGdtYWlsLmNvbSIsImV4cCI6MTYyNTYxMTQyMX0.dMePsun3tMCxofZN1W32JsaJuuyf_CprEyAfvgSupvaA4U4f1iZhCN2xkH33lt1DUy4fiW3zQEOICdWX_eVD6A",
+								"disabled": true
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"descricao\": \"PS4 2\",\r\n  \"destinatario\" : 4,\r\n  \"status\": true\r\n \r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/agendamentos-mudanca/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"agendamentos-mudanca",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "buscar agendamentos",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJjYXJsb3Nqb3NlQGdtYWlsLmNvbSIsImV4cCI6MTYyNTYxMTQyMX0.dMePsun3tMCxofZN1W32JsaJuuyf_CprEyAfvgSupvaA4U4f1iZhCN2xkH33lt1DUy4fiW3zQEOICdWX_eVD6A",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"cpf\": \"148.923.137-42\",\r\n  \"email\": \"machadopnn@gmail.com\",\r\n  \"funcao\": \"Sindico\",\r\n  \"nome\": \"Carlos\",\r\n  \"senha\": \"teste\",\r\n  \"sobrenome\": \"Henrique\"\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/agendamentos-mudanca",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"agendamentos-mudanca"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "buscar agendamentos dinamicamente",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJjYXJsb3Nqb3NlQGdtYWlsLmNvbSIsImV4cCI6MTYyNTYxMTQyMX0.dMePsun3tMCxofZN1W32JsaJuuyf_CprEyAfvgSupvaA4U4f1iZhCN2xkH33lt1DUy4fiW3zQEOICdWX_eVD6A",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"cpf\": \"148.923.137-42\",\r\n  \"email\": \"machadopnn@gmail.com\",\r\n  \"funcao\": \"Sindico\",\r\n  \"nome\": \"Carlos\",\r\n  \"senha\": \"teste\",\r\n  \"sobrenome\": \"Henrique\"\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/agendamentos-mudanca/search?condominio=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"agendamentos-mudanca",
+								"search"
+							],
+							"query": [
+								{
+									"key": "condominio",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "buscar horarios disponiveis",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJjYXJsb3Nqb3NlQGdtYWlsLmNvbSIsImV4cCI6MTYyNTYxMTQyMX0.dMePsun3tMCxofZN1W32JsaJuuyf_CprEyAfvgSupvaA4U4f1iZhCN2xkH33lt1DUy4fiW3zQEOICdWX_eVD6A",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"cpf\": \"148.923.137-42\",\r\n  \"email\": \"machadopnn@gmail.com\",\r\n  \"funcao\": \"Sindico\",\r\n  \"nome\": \"Carlos\",\r\n  \"senha\": \"teste\",\r\n  \"sobrenome\": \"Henrique\"\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/agendamentos-mudanca/buscar-horarios?data=2021-07-11",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"agendamentos-mudanca",
+								"buscar-horarios"
+							],
+							"query": [
+								{
+									"key": "data",
+									"value": "2021-07-11"
+								}
 							]
 						}
 					},
