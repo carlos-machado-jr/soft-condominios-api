@@ -2,26 +2,30 @@ package com.softcondominios.api.service.specifications;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import javax.persistence.criteria.Path;
 import javax.persistence.criteria.Predicate;
+import javax.transaction.Transactional;
 
 import org.springframework.data.jpa.domain.Specification;
 
 import com.softcondominios.api.domain.AgendamentoMudancaDomain;
 
 public class AgendamentoMudancaServiceSpecifications {
+	
+	@Transactional
 	public Specification<AgendamentoMudancaDomain> searchBy(Boolean status, Long condominio) {
 		
 		return (root, query, builder) -> {
 			List<Predicate> predicados = new ArrayList<>();
-			if(status || !status) {
+			if(status != null) {
 				Path<Boolean> campo = root.get("status");
 				Predicate predicado = builder.equal(campo, status);
 				predicados.add(predicado);
 			}
 			
-			if(condominio != null) {
+			if(Objects.nonNull(condominio)) {
 				Path<Long> campo = root.get("morador").get("condominio");
 				Predicate predicado = builder.equal(campo, condominio);
 				predicados.add(predicado);
