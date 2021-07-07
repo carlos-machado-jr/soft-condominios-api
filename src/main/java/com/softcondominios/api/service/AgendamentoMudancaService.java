@@ -38,7 +38,7 @@ public class AgendamentoMudancaService extends AgendamentoMudancaServiceSpecific
 	
 	public List<String> buscarHoraDisponivel(String data) throws ParseException{
 		
-		List<String> horas = List.of("09:00:00", "11:00:00", "13:00:00", "15:00:00", "17:00:00");
+		List<String> horas = Arrays.asList("09:00:00", "11:00:00", "13:00:00", "15:00:00", "17:00:00");
 		List<AgendamentoMudancaDomain> agendamento = agendamentoMudancaRepository.findAll(searchByData(data));
 		
 		horas = eFimDeSemana(data) ? Arrays.asList("09:00:00", "11:00:00", "13:00:00") : horas;
