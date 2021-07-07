@@ -2,7 +2,6 @@ package com.softcondominios.api.service.specifications;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 import javax.persistence.criteria.Path;
 import javax.persistence.criteria.Predicate;
@@ -22,7 +21,7 @@ public class AgendamentoMudancaServiceSpecifications {
 				predicados.add(predicado);
 			}
 			
-			if(Objects.nonNull(condominio)) {
+			if(condominio != null) {
 				Path<Long> campo = root.get("morador").get("condominio");
 				Predicate predicado = builder.equal(campo, condominio);
 				predicados.add(predicado);
