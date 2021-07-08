@@ -1,6 +1,7 @@
 package com.softcondominios.api.domain;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -15,6 +16,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+
+import com.softcondominios.api.rest.dto.NewOcorrenciaDto;
 
 @Entity
 @Table(name = "tb_ocorrencia")
@@ -37,10 +40,15 @@ public class OcorrenciaDomain implements Serializable {
 	private String descricao;
 	
 	@Column(columnDefinition = "datetime", nullable = false)
-	private Date dataInicio;
+	private String dataInicio;
 	
 	@Column(columnDefinition = "datetime")
-	private Date dataConcluido;
+	private String dataConcluido;
+	
+	@Column(columnDefinition = "varchar(50)")
+	private String residencia;
+	
+
 	
 	private String linkArquivo;
 	
@@ -50,8 +58,7 @@ public class OcorrenciaDomain implements Serializable {
 	@Column(columnDefinition = "tinyint", nullable = false)
 	private boolean status;
 	
-	@Column(columnDefinition = "varchar(50)", nullable = false)
-	private String tipo;
+
 	
 	@OneToMany(mappedBy = "ocorrencia")
 	private Set<MensagemDomain> mensagem = new HashSet<>();
@@ -63,6 +70,44 @@ public class OcorrenciaDomain implements Serializable {
 	public OcorrenciaDomain() {
 		// TODO Auto-generated constructor stub
 	}
+
+	
+
+	public OcorrenciaDomain(NewOcorrenciaDto newOcorrenciaDto, MoradorDomain morador) {
+		super();
+		this.id = null;
+		this.titulo = newOcorrenciaDto.getTitulo();
+		this.descricao = newOcorrenciaDto.getDescricao();
+		SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		Date now = new Date();
+		this.dataInicio = date.format(now);
+		this.dataConcluido = null;
+		this.residencia = "Bloco: " + morador.getBloco() + " Apt: " + morador.getApartamento();
+		this.linkArquivo = newOcorrenciaDto.getLinkArquivo();
+		this.autor = morador.getNome() + " " + morador.getSobrenome();
+		this.status = true;
+		this.mensagem = null;
+		this.morador = morador;
+	}
+	
+	
+//	public OcorrenciaDomain(OcorrenciaDomain ocorrencia , NewOcorrenciaDto newOcorrenciaDto) {
+//		super();
+//		this.id = ocorrencia.getId();
+//		this.titulo = Objects.isNull(newOcorrenciaDto.getTitulo()) ? ocorrencia.getTitulo() : newOcorrenciaDto.getTitulo();
+//		this.descricao = Objects.isNull(newOcorrenciaDto.getDescricao()) ? ocorrencia.getDescricao() : newOcorrenciaDto.getDescricao();
+//		SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+//		Date now = new Date();
+//		this.dataInicio = date.format(now);
+//		this.dataConcluido = null;
+//		this.residencia = "Bloco: " + morador.getBloco() + " Apt: " + morador.getApartamento();
+//		this.linkArquivo = newOcorrenciaDto.getLinkArquivo();
+//		this.autor = morador.getNome() + " " + morador.getSobrenome();
+//		this.status = true;
+//		this.mensagem = null;
+//		this.morador = morador;
+//	}
+
 
 
 	public Long getId() {
@@ -95,22 +140,22 @@ public class OcorrenciaDomain implements Serializable {
 	}
 
 
-	public Date getDataInicio() {
+	public String getDataInicio() {
 		return dataInicio;
 	}
 
 
-	public void setDataInicio(Date dataInicio) {
+	public void setDataInicio(String dataInicio) {
 		this.dataInicio = dataInicio;
 	}
 
 
-	public Date getDataConcluido() {
+	public String getDataConcluido() {
 		return dataConcluido;
 	}
 
 
-	public void setDataConcluido(Date dataConcluido) {
+	public void setDataConcluido(String dataConcluido) {
 		this.dataConcluido = dataConcluido;
 	}
 
@@ -145,14 +190,6 @@ public class OcorrenciaDomain implements Serializable {
 	}
 
 
-	public String getTipo() {
-		return tipo;
-	}
-
-
-	public void setTipo(String tipo) {
-		this.tipo = tipo;
-	}
 
 
 	public Set<MensagemDomain> getMensagem() {
@@ -162,6 +199,28 @@ public class OcorrenciaDomain implements Serializable {
 
 	public void setMensagem(Set<MensagemDomain> mensagem) {
 		this.mensagem = mensagem;
+	}
+
+
+	public String getResidencia() {
+		return residencia;
+	}
+
+
+	public void setResidencia(String residencia) {
+		this.residencia = residencia;
+	}
+
+
+
+
+	public MoradorDomain getMorador() {
+		return morador;
+	}
+
+
+	public void setMorador(MoradorDomain morador) {
+		this.morador = morador;
 	}
 	
 	
