@@ -1,6 +1,7 @@
 package com.softcondominios.api.test;
 
 import java.text.ParseException;
+import java.util.Objects;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,23 +16,23 @@ public class DbTeste {
 	private GrupoPermissaoRepository grupoPermissaoRepository;
 	
 	public void criarPermissoes() throws ParseException {
-		if (grupoPermissaoRepository.findByDescricao("Administrador") == null) {
+		if (Objects.isNull(grupoPermissaoRepository.findByDescricao("Administrador"))) {
 			GrupoPermissaoDomain permissao = new GrupoPermissaoDomain("Administrador");
 			grupoPermissaoRepository.save(permissao);
 		}
-		if (grupoPermissaoRepository.findByDescricao("Sindico") == null) {
+		if (Objects.isNull(grupoPermissaoRepository.findByDescricao("Sindico"))) {
 			GrupoPermissaoDomain permissao = new GrupoPermissaoDomain("Sindico");
 			grupoPermissaoRepository.save(permissao);
 		}
-		if (grupoPermissaoRepository.findByDescricao("Zelador") == null) {
+		if (Objects.isNull(grupoPermissaoRepository.findByDescricao("Zelador"))) {
 			GrupoPermissaoDomain permissao = new GrupoPermissaoDomain("Zelador");
 			grupoPermissaoRepository.save(permissao);
 		}
-		if (grupoPermissaoRepository.findByDescricao("Porteiro") == null) {
+		if (Objects.isNull(grupoPermissaoRepository.findByDescricao("Porteiro"))) {
 			GrupoPermissaoDomain permissao = new GrupoPermissaoDomain("Porteiro");
 			grupoPermissaoRepository.save(permissao);
 		}
-		if (grupoPermissaoRepository.findByDescricao("Morador") == null) {
+		if (Objects.isNull(grupoPermissaoRepository.findByDescricao("Morador"))) {
 			GrupoPermissaoDomain permissao = new GrupoPermissaoDomain("Morador");
 			grupoPermissaoRepository.save(permissao);
 		}
