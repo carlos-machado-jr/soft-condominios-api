@@ -10,6 +10,7 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.softcondominios.api.domain.MensagemDomain;
 import com.softcondominios.api.domain.OcorrenciaDomain;
 import com.softcondominios.api.rest.dto.NewOcorrenciaDto;
 import com.softcondominios.api.rest.dto.ViewOcorrenciaDto;
@@ -53,6 +55,17 @@ public class OcorrenciaResource {
 	public ResponseEntity<OcorrenciaDomain> save(@RequestBody NewOcorrenciaDto viewOcorrencia){
 		
 		OcorrenciaDomain o = ocorrenciaService.save(viewOcorrencia);
+		
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(o.getId()).toUri();
+		return ResponseEntity.created(uri).build();
+		
+	}
+	
+	@ApiOperation("Cria um comentario")
+	@PostMapping("/{id}/comentario")
+	public ResponseEntity<OcorrenciaDomain> createComment(@RequestBody MensagemDomain mensagem, @PathVariable Long id){
+		
+		OcorrenciaDomain o = ocorrenciaService.createComment(id, mensagem);
 		
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(o.getId()).toUri();
 		return ResponseEntity.created(uri).build();

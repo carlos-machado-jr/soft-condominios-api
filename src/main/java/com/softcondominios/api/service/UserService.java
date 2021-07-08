@@ -19,9 +19,11 @@ import com.softcondominios.api.rest.dto.NewColaboradorDto;
 import com.softcondominios.api.rest.dto.ViewColaboradorDto;
 import com.softcondominios.api.rest.dto.ViewMoradorDto;
 import com.softcondominios.api.security.UserSS;
+import com.softcondominios.api.service.exceptions.ObjectNotFoundException;
+import com.softcondominios.api.service.specifications.UserServiceSpecifications;
 
 @Service
-public class UserService {
+public class UserService extends UserServiceSpecifications{
 	
 	@Autowired
 	UserRepository userRepository;
@@ -53,6 +55,14 @@ public class UserService {
         
 	}
 	
+//	public List<UserDomain> findAll(Set<CondominioDomain> condominio, MoradorDomain morador){ 
+//       if(Objects.nonNull(findUser().getColaborador())) {
+//    	   return userRepository.findAll(searchBy(true, condominio, findUser().getColaborador().getFuncao() , morador));
+//       }
+//       return userRepository.findAll(searchBy(true, condominio,"Morador" , morador));
+//       
+//	}
+	
 	public UserDomain save(UserDomain user) {
 		return userRepository.save(user);
 	}
@@ -75,6 +85,14 @@ public class UserService {
 		}
 		
 		return  new ViewColaboradorDto(colaboradorService.findByColaborador());
+	}
+	
+	public UserDomain findUser() {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+			
+		
+		return userRepository.findByLogin(auth.getName()).orElseThrow(() -> 
+		new ObjectNotFoundException("Usuario nao encontrado! email: " + auth.getName() + ", Tipo: " + UserDomain.class.getName()));
 	}
 	
 	private boolean hasRole( String role) {

@@ -5,7 +5,6 @@ public class NewOcorrenciaDto {
 	private String titulo;
 	private String descricao;
 	private String linkArquivo;
-	private String autor;
 	private String status;
 
 	
@@ -51,15 +50,6 @@ public class NewOcorrenciaDto {
 		this.linkArquivo = linkArquivo;
 	}
 
-
-	public String getAutor() {
-		return autor;
-	}
-
-
-	public void setAutor(String autor) {
-		this.autor = autor;
-	}
 
 
 	public String getStatus() {

@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -61,6 +62,14 @@ public class UserDomain implements Serializable{
 	@JsonIgnore
 	@OneToOne(mappedBy = "usuario")
 	private MoradorDomain morador;
+	
+	@JsonIgnore
+	@OneToMany(mappedBy = "usuario")
+	private Set<MensagemDomain> mensagens = new HashSet<>();
+	
+	@JsonIgnore
+	@OneToMany(mappedBy = "usuario")
+	private Set<NotificacaoDomain> notificacao = new HashSet<>();
 	
 	public UserDomain() {
 		// TODO Auto-generated constructor stub
@@ -116,6 +125,22 @@ public class UserDomain implements Serializable{
 
 	
 
+	public MoradorDomain getMorador() {
+		return morador;
+	}
+
+	public void setMorador(MoradorDomain morador) {
+		this.morador = morador;
+	}
+
+	public Set<MensagemDomain> getMensagens() {
+		return mensagens;
+	}
+
+	public void setMensagens(Set<MensagemDomain> mensagens) {
+		this.mensagens = mensagens;
+	}
+
 	public Set<GrupoPermissaoDomain> getGrupoPermissao() {
 		return grupoPermissao;
 	}
@@ -148,6 +173,15 @@ public class UserDomain implements Serializable{
 		this.linkFoto = linkFoto;
 	}
 
+	public Set<NotificacaoDomain> getNotificacao() {
+		return notificacao;
+	}
+
+	public void setNotificacao(Set<NotificacaoDomain> notificacao) {
+		this.notificacao = notificacao;
+	}
+
+	
 	
 	
 	

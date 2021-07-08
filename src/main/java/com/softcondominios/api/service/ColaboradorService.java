@@ -54,6 +54,7 @@ public class ColaboradorService extends ColaboradorServiceSpecifications{
 	public ColaboradorDomain saveSindico(NewColaboradorDto newColaborador) {
 		ColaboradorDomain colaborador = convertToDomain(newColaborador);
 		colaborador.setFuncao("Sindico");
+		newColaborador.setFuncao("Sindico");
 		colaborador.setUsuario(userService.save(newColaborador));
 		return colaboradorRepository.save(colaborador);
 	}

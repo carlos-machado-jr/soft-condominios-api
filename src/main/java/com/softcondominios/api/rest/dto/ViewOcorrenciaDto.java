@@ -1,7 +1,10 @@
 package com.softcondominios.api.rest.dto;
 
 import java.util.Objects;
+import java.util.Set;
+import java.util.stream.Collectors;
 
+import com.softcondominios.api.domain.MensagemDomain;
 import com.softcondominios.api.domain.OcorrenciaDomain;
 
 public class ViewOcorrenciaDto {
@@ -17,6 +20,7 @@ public class ViewOcorrenciaDto {
 	private String dataFinalizado;
 	private String horaFinalizado;
 	private ViewMoradorDto morador;
+	private Set<ViewMensagemDto> comentarios;
 	
 	
 	public ViewOcorrenciaDto() {
@@ -45,8 +49,12 @@ public class ViewOcorrenciaDto {
 		}
 		
 		this.morador = new ViewMoradorDto(ocorrencia.getMorador());
+		this.comentarios = convertToDto(ocorrencia.getMensagem());
 	}
 
+	private Set<ViewMensagemDto> convertToDto(Set<MensagemDomain> mensagem){
+		return mensagem.stream().map( m -> new ViewMensagemDto(m)).collect(Collectors.toSet());
+	}
 
 
 
@@ -158,6 +166,21 @@ public class ViewOcorrenciaDto {
 	public void setMorador(ViewMoradorDto morador) {
 		this.morador = morador;
 	}
+
+
+
+
+	public Set<ViewMensagemDto> getComentarios() {
+		return comentarios;
+	}
+
+
+
+
+	public void setComentarios(Set<ViewMensagemDto> comentarios) {
+		this.comentarios = comentarios;
+	}
+	
 	
 	
 }
