@@ -36,7 +36,7 @@ public class DbTeste {
 			GrupoPermissaoDomain permissao = new GrupoPermissaoDomain("Morador");
 			grupoPermissaoRepository.save(permissao);
 		}
-	
+//ssssssss	
 		
 	}
 
